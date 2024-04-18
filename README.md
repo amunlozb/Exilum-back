@@ -1,30 +1,17 @@
-En este repositorio centralizaremos toda la información relativa a los **Proyectos de Desarrollo de Aplicaciones Web del I.E.S Alixar**.
-Al continuación encontraremos los **apellidos y nombre** del alumno/a junto al **título de su proyecto**. El enlace nos dará acceso al repositorio del proyecto (no a la página GitHub del usuario).
+# Exilum
 
-En este repositorio se debe incluir la documentación especificada en [Requerimientos y criterios a seguir en el desarrollo de los proyectos](https://github.com/iesalixar/plantilla_proyecto_iesalixar/wiki/a.---Criterios-comunes-para-todos-los-proyectos), así como las indicaciones que el tutor haya podido ir a realizando a lo largo del desarrollo del mismo.
-
-El desarrollo de toda Aplicación Web requiere seguir un [proceso estructurado](https://github.com/iesalixar/plantilla_proyecto_iesalixar/wiki/w1.--PROCESO-ESTRUCTURADO-PARA-DESARROLLO-DE-APLICACIONES-WEB), este  de contenido de la wiki te puede ayudar.
-
-
----
-
-**Los párrafos anteriores son informativos y no deben aparecer en el reposotirio de los alumnos.**
-
----
-
-# Título del Proyecto
-
-#### Curso Escolar 20XX-20XX
-#### Autor: [Nombre del alumno autor](Enlace a su cuenta de gitHub)
-#### Tutor: [Nombre del profesor tutor](Enlace a su cuenta de gitHub)
-#### Fecha de Inicio: DD-MM-YYYY
-#### Fecha de Finalización: DD-MM-YYYY
+#### Curso Escolar 2023-2024
+#### Autor: [Ángel Muñoz Lozano](https://github.com/amunlozb/)
+#### Tutor: [Juan Pablo Domínguez Mayo](https://github.com/profeinformatica101)
+#### Fecha de Inicio: 25-03-2024
+#### Fecha de Finalización: 21-06-2024
 
 ## Breve descripción del proyecto
 
-Si ya tienes una idea para tu aplicación, explícala brevemente. Si no es así, lo que realmente necesitas es **buscar un problema o necesidad a la que darle solución**, y estos **están por todas partes**. Así que trata de buscar problemas o necesidades en tu vida diaria y realiza una lista. Una vez que tengas una lista exhaustiva, ya puedes empezar a pensar en **cómo puedes resolverlos**.
+La propuesta de valor de este proyecto reside en la simplificación del proceso de realizar planificaciones económicas en el videojuego  
+**Path of Exile**, el cuál incluye un mercado que oscila constantemente, y al que se aplican todos los principios de la economía.
 
-En este apartado el alumno debe hacer una breve descripción del proyecto que vaya a realizar. Esta descripción no será ua descripción detallada, será una presentación general con no más de 10 líneas.
+**Exilum** facilita el acceso a estos cálculos a una mayor parte de la comunidad, consiguiendo así que un mayor número de usuarios tenga la oportunidad de contribuir al conocimiento y desarrollo de la economía general.
 
 ## Definir el objetivo de la aplicación
 **Tener una gran idea** o encontrar un punto del mercado al que no se esté dando un producto o servicio es el punto de partida en cada nuevo proyecto. Antes de comenzar debes **definir claramente el propósito y la misión de la aplicación web**:
