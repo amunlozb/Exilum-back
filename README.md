@@ -13,29 +13,30 @@ La propuesta de valor de este proyecto reside en la simplificación del proceso 
 
 **Exilum** facilita el acceso a estos cálculos a una mayor parte de la comunidad, consiguiendo así que un mayor número de usuarios tenga la oportunidad de contribuir al conocimiento y desarrollo de la economía general.
 
-## Definir el objetivo de la aplicación
+## Definir el objetivo de la aplicación  
 **Tener una gran idea** o encontrar un punto del mercado al que no se esté dando un producto o servicio es el punto de partida en cada nuevo proyecto. Antes de comenzar debes **definir claramente el propósito y la misión de la aplicación web**:
 
-- **¿Qué va a hacer la aplicación?**
-- **¿Cuál es su atractivo principal?** 
-- **¿Qué problema concreto va a resolver?** 
-- **¿Qué necesidad va a cubrir?**
+- **¿Qué va a hacer la aplicación?**  
+ Exilum es una aplicación web que ayuda a los usuarios de Path of Exile a tomar decisiones económicas informadas, además de ayudar con la planificación de diferentes estrategias.
+    
+- **¿Cuál es su atractivo principal?**  
+ El atractivo principal de Exilum es su facilidad de uso. La aplicación está diseñada para ser intuitiva y fácil de navegar, incluso para los usuarios que no están familiarizados con los conceptos económicos.
+     
+- **¿Qué problema concreto va a resolver?**  
+ Exilum resuelve el problema de que los usuarios de Path of Exile a menudo toman decisiones económicas basadas en información errónea o desactualizada. Esto puede provocar una pérdida de recursos y una progresión más lenta en el juego.
+      
+- **¿Qué necesidad va a cubrir?**  
+ Exilum cubre la necesidad de una herramienta fiable y fácil de usar que pueda ayudar a los usuarios de Path of Exile a tomar decisiones económicas informadas y fiables con datos que se actualizan en tiempo real. Esto puede ayudar a los usuarios a mejorar su experiencia de juego y progresar más rápido. 
 
 ## Estructura del Proyecto
 
-En este apartado el alumno explicará el contenido del repositorio y de todas las carpetas relevantes del mismo. Para facilitar la gestión de la entrega, todo el código y documentación debe estar en este repositorio.
+Al utilizar tecnologías diferentes para cada parte de la aplicación, se ha optado por separar el proyecto en dos repositorios diferentes:
 
-Por lo anterior, un proyecto que contenga un Frontend en una tecnología o framework (por ejemplo Angular) y una API REST en otra tecnología o framework (Springboot, Express) deberá tener la siguiente estructura de directorios en el repositorio de entrega:
+[**Exilum-front**](https://github.com/amunlozb/Exilum-front/):  
+- Repositorio para el front-end. Se utiliza el framework **React** para crear una interfaz de usuario moderna y atractiva, utilizando la ayuda de librerias como [Flowbite](https://flowbite.com/) para implementar algunos componentes prefabricados (aunque la mayoría han tenido que ser codificados a mano), y [Tailwind CSS](https://tailwindcss.com/) como alternativa a *Bootstrap* para el diseño responsive, así como la configuración del tema personalizado.  
+  
+- Este repositorio se ha configurado para realizar pruebas automáticamente en cada commit antes de realizar un empaquetamiento de la aplicación, y por último se lleva a cabo el despliegue a la nube de forma automática
+  
 
-- src-api
-- src-frontend
-- docs
-- README.md
-
-En el caso anterior, si se quiere desplegar de forma automatizada a partir del control de versiones, lo habitual es que estén los dos proyectos en repositorios separados. Por lo que se deberá configurar el despliegue automático para indicarle la raíz del código fuente de cada proyecto (si es posible) o hacer dos folks del repositorio principal uno para la API y otro para el frontend y adaptar los directorios para poder realizar el despliegue automático.
-
-En un proyecto monolítico (tecnología servidor: Springboot, Django, Express, PHP,... con un sistema de templates propio para el frontend: Thymeleaf, jinja, ejs,...) deberá tener la siguiente estructura en el repositorio de entrega:
-
-- src
-- docs
-- README.md
+[**Exilum-back**](https://github.com/amunlozb/Exilum-back/):  
+- Repositorio para el back-end. Se utiliza el framework **Spring** (basado en Java) para gestionar la lógica de negocio y la interacción con la base de datos
