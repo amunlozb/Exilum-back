@@ -10,6 +10,7 @@ import java.security.Principal;
 @RequestMapping("/api")
 public class WebController {
     @GetMapping(path = "/getName")
+    // Principal = authenticated user
     public String getUserName(Principal principal) {
         return principal.getName();
     }
