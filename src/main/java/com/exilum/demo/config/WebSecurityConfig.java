@@ -1,4 +1,4 @@
-package com.exilum.demo.security;
+package com.exilum.demo.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
