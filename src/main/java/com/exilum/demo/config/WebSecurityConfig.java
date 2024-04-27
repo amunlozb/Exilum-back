@@ -25,16 +25,18 @@ public class WebSecurityConfig {
     @Bean
     protected SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-            .authorizeHttpRequests((authorize) -> authorize
-                    // permit all requests to /admin/user-claims/**
-                    // TODO: change before deploying
-                    .requestMatchers("/admin/**").permitAll()
-                    // require authentication for the rest
-                    .anyRequest().authenticated()
-            )
-            .csrf().disable()
-            // Configure oauth2 resource server
-            .oauth2ResourceServer((oauth2) -> oauth2.jwt(Customizer.withDefaults()));
+                .authorizeHttpRequests((authorize) -> authorize
+                        // permit all requests to /admin/user-claims/**
+                        // TODO: change before deploying
+                        .requestMatchers("/admin/**").permitAll()
+                        // require authentication for the rest
+                        .anyRequest().authenticated()
+                )
+                .csrf().disable()
+                // Configure oauth2 resource server
+                .oauth2ResourceServer(oauth2 -> oauth2.jwt(jwtConfigurer -> jwtConfigurer
+                        // Use the custom converter (defined under this)
+                        .jwtAuthenticationConverter(jwtAuthenticationConverter())));
 
         return http.build();
     }

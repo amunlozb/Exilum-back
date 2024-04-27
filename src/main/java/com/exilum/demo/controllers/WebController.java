@@ -1,5 +1,6 @@
 package com.exilum.demo.controllers;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.CurrentSecurityContext;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,5 +21,11 @@ public class WebController {
     @GetMapping(path = "/getAuthorities")
     public java.util.Collection<? extends org.springframework.security.core.GrantedAuthority> getRole(@CurrentSecurityContext SecurityContext context ) {
         return context.getAuthentication().getAuthorities();
+    }
+
+    @GetMapping(path = "checkRead")
+    @PreAuthorize("hasAuthority('READ')")
+    public String hasRead(Principal principal) {
+        return principal.getName() + ", you have READ authority";
     }
 }
