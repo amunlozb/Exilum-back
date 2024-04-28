@@ -1,5 +1,6 @@
-package com.exilum.demo.admin;
+package com.exilum.demo.controllers;
 
+import com.exilum.demo.admin.UserManagementService;
 import com.exilum.demo.security.Permission;
 import com.google.firebase.auth.FirebaseAuthException;
 import lombok.RequiredArgsConstructor;
