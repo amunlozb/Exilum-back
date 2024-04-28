@@ -1,8 +1,10 @@
 package com.exilum.demo.controllers;
 
 import com.exilum.demo.admin.UserManagementService;
+import com.exilum.demo.model.DTO.MapDTO;
 import com.exilum.demo.model.DTO.ScarabDTO;
 import com.exilum.demo.security.Permission;
+import com.exilum.demo.service.fetching.MapFetchingService;
 import com.exilum.demo.service.fetching.ScarabFetchingService;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.gson.Gson;
@@ -22,6 +24,8 @@ import java.util.List;
 public class AdminController {
     @Autowired
     ScarabFetchingService scarabFetchingService;
+    @Autowired
+    MapFetchingService mapFetchingService;
 
     // TODO: check if actually needed
     Gson gson = new GsonBuilder().setPrettyPrinting().create();
@@ -41,6 +45,14 @@ public class AdminController {
     @ResponseBody
     public ScarabDTO[] testScarabs() {
         ScarabDTO[] result = scarabFetchingService.fetchScarabs();
+
+        return result;
+    }
+
+    @GetMapping("/testMaps")
+    @ResponseBody
+    public MapDTO[] testMaps() {
+        MapDTO[] result = mapFetchingService.fetchMaps();
 
         return result;
     }
