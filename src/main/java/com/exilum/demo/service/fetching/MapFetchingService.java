@@ -1,7 +1,6 @@
 package com.exilum.demo.service.fetching;
 
 import com.exilum.demo.model.DTO.MapDTO;
-import com.exilum.demo.model.DTO.ScarabDTO;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
