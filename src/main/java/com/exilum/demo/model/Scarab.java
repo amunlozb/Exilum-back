@@ -25,8 +25,11 @@ public class Scarab {
     private Integer scarab_limit;
     @NotBlank(message = "Scarab price can't be blank")
     private Double price;
+    @NotBlank(message = "Scarab image url can't be blank")
+    private String icon_url;
 
     // TODO: Add hardcore prices
+
 
     @Override
     public String toString() {
@@ -34,8 +37,9 @@ public class Scarab {
                 "scarab_id=" + scarab_id +
                 ", name='" + name + '\'' +
                 ", mechanic='" + mechanic + '\'' +
-                ", limit=" + scarab_limit +
+                ", scarab_limit=" + scarab_limit +
                 ", price=" + price +
+                ", icon_url='" + icon_url + '\'' +
                 '}';
     }
 }
