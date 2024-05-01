@@ -15,11 +15,17 @@ public class AuthController {
     private FirebaseAuth firebaseAuth;
 
     @PostMapping("/signup")
-    public UserRecord createUser(String email, String password) throws FirebaseAuthException {
-        UserRecord.CreateRequest request = new UserRecord.CreateRequest()
-                .setEmail(email)
-                .setPassword(password);
+    public UserRecord createUser(@RequestBody SignupRequest request) throws FirebaseAuthException {
+        UserRecord.CreateRequest createRequest = new UserRecord.CreateRequest()
+                .setEmail(request.getEmail())
+                .setPassword(request.getPassword());
+        System.out.println("EMAIL: " + request.getEmail() + ",  PASSWORD: " + request.getPassword());
 
-        return FirebaseAuth.getInstance().createUser(request);
+        return FirebaseAuth.getInstance().createUser(createRequest);
+    }
+
+    @GetMapping("test")
+    public String sayHello() {
+        return "this works";
     }
 }
