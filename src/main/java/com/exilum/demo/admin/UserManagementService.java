@@ -23,7 +23,7 @@ public class UserManagementService {
         List<String> permissions = requestedPermissions
                 .stream()
                 .map(Enum::toString)
-                .collect(Collectors.toList());
+                .toList();
 
         /*
         Map for sending to firebase auth:

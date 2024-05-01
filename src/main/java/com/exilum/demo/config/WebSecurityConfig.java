@@ -29,6 +29,7 @@ public class WebSecurityConfig {
                         // permit all requests to /admin/user-claims/**
                         // TODO: change before deploying
                         .requestMatchers("/admin/**").permitAll()
+                        .requestMatchers("/api/auth/*").permitAll()
                         // require authentication for the rest
                         .anyRequest().authenticated()
                 )
