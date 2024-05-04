@@ -42,15 +42,6 @@ public class AdminController {
 
     private final UserManagementService userManagementService;
 
-    // can delete
-    @PostMapping(path = "/user-claims/{uid}")
-    public void setPermissionUserClaims(
-            @PathVariable String uid,
-            @RequestBody List<Permission> requestedClaims
-    ) throws FirebaseAuthException {
-        userManagementService.setPermissionUserClaims(uid, requestedClaims);
-    }
-
     // TODO: add return msg
     @PostMapping(path = "/roles/{uid}")
     public void setRolesUserClaims(

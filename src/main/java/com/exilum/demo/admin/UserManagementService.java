@@ -18,24 +18,6 @@ public class UserManagementService {
 
     private final FirebaseAuth firebaseAuth;
 
-    public void setPermissionUserClaims(String uid, List<Permission> requestedPermissions) throws FirebaseAuthException {
-
-        // Take user id and a list of Permissions, then convert the permissions to a list of Strings
-        List<String> permissions = requestedPermissions
-                .stream()
-                .map(Enum::toString)
-                .toList();
-
-        /*
-        Map for sending to firebase auth:
-            Key: property inside the jwt token where the customer claims will be
-            Value: list of permissions
-        */
-        Map<String, Object> claims = Map.of("custom_claims", permissions);
-
-        firebaseAuth.setCustomUserClaims(uid, claims);
-    }
-
     public String setRoleUserClaims(String uid, List<Role> requestedRoles) throws FirebaseAuthException {
         // Take user id and a list of Roles, then convert the roles to a list of Strings
         List<String> roles = requestedRoles
