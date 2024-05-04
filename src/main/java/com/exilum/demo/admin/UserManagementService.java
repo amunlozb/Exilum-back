@@ -16,8 +16,6 @@ import java.util.Map;
 // This service should be callable from a REST endpoint so that administrators are able to grant or deny users permissions.
 public class UserManagementService {
 
-    private final FirebaseAuth firebaseAuth;
-
     public String setRoleUserClaims(String uid, List<Role> requestedRoles) throws FirebaseAuthException {
         // Take user id and a list of Roles, then convert the roles to a list of Strings
         List<String> roles = requestedRoles
@@ -44,6 +42,6 @@ public class UserManagementService {
     }
 
     private String generateCustomToken(String uid) throws FirebaseAuthException {
-        return firebaseAuth.createCustomToken(uid);
+        return FirebaseAuth.getInstance().createCustomToken(uid);
     }
 }
