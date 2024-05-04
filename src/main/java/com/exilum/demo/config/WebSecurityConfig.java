@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.configurers.oauth2.ser
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -58,4 +59,6 @@ public class WebSecurityConfig {
 
         return converter;
     }
+
+
 }

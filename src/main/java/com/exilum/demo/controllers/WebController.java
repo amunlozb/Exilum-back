@@ -18,7 +18,7 @@ public class WebController {
         return principal.getName();
     }
 
-    @GetMapping(path = "/getAuthorities")
+    @GetMapping(path = "/getRoles")
     public java.util.Collection<? extends org.springframework.security.core.GrantedAuthority> getRole(@CurrentSecurityContext SecurityContext context ) {
         return context.getAuthentication().getAuthorities();
     }

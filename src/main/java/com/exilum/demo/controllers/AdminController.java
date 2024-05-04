@@ -6,6 +6,7 @@ import com.exilum.demo.model.DTO.DeliriumOrbDTO;
 import com.exilum.demo.model.DTO.MapDTO;
 import com.exilum.demo.model.DTO.ScarabDTO;
 import com.exilum.demo.security.Permission;
+import com.exilum.demo.security.Role;
 import com.exilum.demo.service.fetching.CraftingMaterialFetchingService;
 import com.exilum.demo.service.fetching.DeliriumOrbFetchingService;
 import com.exilum.demo.service.fetching.MapFetchingService;
@@ -41,12 +42,22 @@ public class AdminController {
 
     private final UserManagementService userManagementService;
 
+    // can delete
     @PostMapping(path = "/user-claims/{uid}")
-    public void setUserClaims(
+    public void setPermissionUserClaims(
             @PathVariable String uid,
             @RequestBody List<Permission> requestedClaims
     ) throws FirebaseAuthException {
-        userManagementService.setUserClaims(uid, requestedClaims);
+        userManagementService.setPermissionUserClaims(uid, requestedClaims);
+    }
+
+    // TODO: add return msg
+    @PostMapping(path = "/roles/{uid}")
+    public void setRolesUserClaims(
+            @PathVariable String uid,
+            @RequestBody List<Role> requestedRoles
+    ) throws FirebaseAuthException {
+        userManagementService.setRoleUserClaims(uid, requestedRoles);
     }
 
     @GetMapping("/testScarabs")
