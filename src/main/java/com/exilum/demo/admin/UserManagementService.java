@@ -8,6 +8,7 @@ import com.google.firebase.auth.FirebaseToken;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -43,5 +44,16 @@ public class UserManagementService {
 
     private String generateCustomToken(String uid) throws FirebaseAuthException {
         return FirebaseAuth.getInstance().createCustomToken(uid);
+    }
+
+
+    public String setRolesNew(String uid, Role requestedRole) throws FirebaseAuthException {
+        Map<String, Object> additionalClaims = new HashMap<String, Object>();
+
+        additionalClaims.put(requestedRole.name(), true);
+
+        String customToken = FirebaseAuth.getInstance().createCustomToken(uid, additionalClaims);
+        return customToken;
+
     }
 }

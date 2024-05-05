@@ -44,11 +44,16 @@ public class AdminController {
 
     // TODO: add return msg
     @PostMapping(path = "/roles/{uid}")
-    public void setRolesUserClaims(
+    public String setRolesUserClaims(
             @PathVariable String uid,
-            @RequestBody List<Role> requestedRoles
+            @RequestBody Role requestedRole
     ) throws FirebaseAuthException {
-        userManagementService.setRoleUserClaims(uid, requestedRoles);
+        try {
+            return(userManagementService.setRolesNew(uid, requestedRole));
+        } catch (FirebaseAuthException e) {
+            return e.getMessage();
+        }
+
     }
 
     @GetMapping("/testScarabs")
