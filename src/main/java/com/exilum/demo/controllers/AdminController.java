@@ -18,9 +18,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 @RestController
@@ -49,11 +52,22 @@ public class AdminController {
             @RequestBody Role requestedRole
     ) throws FirebaseAuthException {
         try {
+            if (requestedRole == null) {
+                // Handle case where requestedRole is null
+                return "Requested role is null";
+            }
+
             return(userManagementService.setRolesNew(uid, requestedRole));
         } catch (FirebaseAuthException e) {
             return e.getMessage();
         }
 
+    }
+
+    @GetMapping("/authorities")
+    public Collection<? extends GrantedAuthority> getUserAuthorities(Authentication authentication) {
+        // Get the authorities associated with the authenticated user
+        return authentication.getAuthorities();
     }
 
     @GetMapping("/testScarabs")

@@ -1,5 +1,7 @@
 package com.exilum.demo.controllers;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseToken;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.CurrentSecurityContext;
 import org.springframework.security.core.context.SecurityContext;
@@ -28,4 +30,5 @@ public class WebController {
     public String hasRead(Principal principal) {
         return principal.getName() + ", you have READ authority";
     }
+
 }
