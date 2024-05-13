@@ -1,0 +1,11 @@
+{
+  "name": "exilum-back",
+  "addons":  [
+    "logentries"
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/java"
+    }
+  ]
+}
