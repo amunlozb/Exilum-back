@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -cp target/classes:target/dependency/* com.exilum.demo
+web: java $JAVA_OPTS -cp target/classes:target/dependency/* com.exilum.demo.ExilumApplication
