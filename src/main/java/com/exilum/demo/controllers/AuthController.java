@@ -6,7 +6,6 @@ import com.google.gson.JsonObject;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -56,7 +55,10 @@ public class AuthController {
             String sessionCookie = FirebaseAuth.getInstance().createSessionCookie(idToken, options);
             Cookie cookie = new Cookie("session", sessionCookie);
             cookie.setMaxAge((int) TimeUnit.MILLISECONDS.toSeconds(expirationTime));
-            cookie.setHttpOnly(true); // Ensures cookie is not accessible via client-side script
+            cookie.setHttpOnly(true); // Ensures cookie is not accessible via client-side javascript
+            cookie.setDomain("localhost"); // TODO change when deployed
+            cookie.setPath("/");
+
 
             // Add the cookie to the response
             response.addCookie(cookie);
@@ -85,7 +87,7 @@ public class AuthController {
 
 
 
-    @GetMapping("test")
+    @GetMapping("/test")
     public String sayHello() {
         return "this works";
     }
