@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.configurers.oauth2.ser
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import java.util.Optional;
@@ -28,12 +29,12 @@ public class WebSecurityConfig {
         http
                 .csrf().disable()
                 .authorizeHttpRequests((authorize) -> authorize
-                        // permit all requests to /admin/user-claims/**
                         // TODO: change before deploying
-                        .requestMatchers("/admin/**").permitAll()
-                        .requestMatchers("/api/auth/**").permitAll()
-                        // require authentication for the rest
+                        // permit all requests except for admin endpoints
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
+                        .and()
+                        .addFilterBefore(firebaseSessionFilter(), UsernamePasswordAuthenticationFilter.class)
                 )
                 // Configure oauth2 resource server
                 .oauth2ResourceServer(oauth2 -> oauth2.jwt(jwtConfigurer -> jwtConfigurer
@@ -58,6 +59,11 @@ public class WebSecurityConfig {
         );
 
         return converter;
+    }
+
+    @Bean
+    public FirebaseSessionFilter firebaseSessionFilter() {
+        return new FirebaseSessionFilter();
     }
 
 
