@@ -3,6 +3,7 @@ package com.exilum.demo.controllers;
 import com.google.firebase.auth.*;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,19 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.exilum.demo.model.auth.SignupRequest;
 import java.net.URI;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthException;
+import com.google.firebase.auth.FirebaseToken;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import java.util.concurrent.TimeUnit;
 
@@ -37,75 +51,26 @@ public class AuthController {
         }
     }
 
-    @PostMapping("/sessionLogin")
-    public ResponseEntity<?> createSessionCookie(@RequestBody String requestBody, HttpServletResponse response) {
-        // Get the ID token sent by the client
-        JsonObject jsonObject = new Gson().fromJson(requestBody, JsonObject.class);
-        String idToken = jsonObject.get("idToken").getAsString();
-
-        // Set the expiration time to 5 days
-        long expirationTime = TimeUnit.DAYS.toMillis(5);
-
-        // Build the cookie options
-        SessionCookieOptions options = SessionCookieOptions.builder()
-                .setExpiresIn(expirationTime)
-                .build();
-
+    @PostMapping("/signin")
+    public ResponseEntity<?> signIn(@RequestHeader("Authorization") String idToken) {
         try {
-            // Create the session cookie and verify the ID token (the cookie contains the same claims as the token)
-            String sessionCookie = FirebaseAuth.getInstance().createSessionCookie(idToken, options);
-            Cookie cookie = new Cookie("session", sessionCookie);
-            cookie.setMaxAge((int) TimeUnit.MILLISECONDS.toSeconds(expirationTime));
-            cookie.setHttpOnly(true); // Ensures cookie is not accessible via client-side javascript
-            cookie.setDomain("exilum-2b7d4.firebaseapp.com"); // TODO change when deployed
-            // cookie.setPath("/");
-            cookie.setSecure(true);
-            cookie.setAttribute("SameSite", "None");
+            // Verify the ID token while checking if the token is revoked
+            boolean checkRevoked = true;
 
-            // Add the cookie to the response
-            response.addCookie(cookie);
-            System.out.println("Session cookie created succesfully");
-            return ResponseEntity.ok().build();
+            FirebaseToken decodedToken = firebaseAuth.verifyIdToken(idToken, checkRevoked);
+            Map<String, Object> claims = decodedToken.getClaims();
+
+            // check roles
+            if (claims.get("custom_claims") != null) {
+                List<String> userRoles = (List<String>) claims.get("custom_claims");
+                return ResponseEntity.ok().body(userRoles);
+            } else {
+                return ResponseEntity.ok().body("User has no roles");
+            }
         } catch (FirebaseAuthException e) {
-            System.err.println("Error creating session cookie" + e.getMessage());
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Failed to create a session cookie: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Unauthorized");
         }
     }
-
-/*    public ResponseEntity<?> verifySessionCookie(@CookieValue("session") String sessionCookie) {
-        try {
-            // Verify the session cookie. In this case, an additional check is added to detect
-            // if the user's Firebase session was revoked, user deleted/disabled, etc.
-            final boolean checkRevoked = true;
-            FirebaseToken decodedToken = FirebaseAuth.getInstance().verifySessionCookie(sessionCookie, checkRevoked);
-            return ResponseEntity.ok().body(serveContentForUser(decodedToken));
-        } catch (FirebaseAuthException e) {
-            // Session cookie is unavailable, invalid, or revoked. Force user to login.
-            HttpHeaders headers = new HttpHeaders();
-            headers.add(HttpHeaders.LOCATION, "/login");
-            return new ResponseEntity<>(headers, HttpStatus.TEMPORARY_REDIRECT);
-        }
-    }*/
-
-    @GetMapping("/sessionLogout")
-    public ResponseEntity<Void> clearSessionCookie(@CookieValue(name = "session", required = false) Cookie cookie, HttpServletResponse response) {
-        if (cookie != null) {
-            // Invalidate the cookie by setting its max age to 0
-            Cookie newCookie = new Cookie("session", null);
-            newCookie.setMaxAge(0);
-            newCookie.setHttpOnly(true);
-            newCookie.setSecure(true);
-            newCookie.setPath("/");
-            // newCookie.setDomain("exilum-2b7d4.firebaseapp.com");
-
-            // Add the invalidated cookie to the response
-            response.addCookie(newCookie);
-        }
-
-        // Redirect to the login page
-        return ResponseEntity.ok().build();
-    }
-
 
     @GetMapping("/test")
     public String sayHello() {

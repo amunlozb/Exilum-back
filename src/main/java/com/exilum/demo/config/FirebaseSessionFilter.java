@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.logging.Logger;
 
+/*
 public class FirebaseSessionFilter extends OncePerRequestFilter {
 
     private static final Logger LOGGER = Logger.getLogger(FirebaseSessionFilter.class.getName());
@@ -69,3 +70,4 @@ public class FirebaseSessionFilter extends OncePerRequestFilter {
         filterChain.doFilter(request, response);
     }
 }
+*/
