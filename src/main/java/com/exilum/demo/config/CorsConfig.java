@@ -13,7 +13,7 @@ public class CorsConfig implements WebMvcConfigurer {
         //TODO: change to deployed front-end url (with allowedOrigins)
         registry
                 .addMapping("/**")
-                .allowedOrigins("http://localhost:5173")
+                .allowedOrigins("http://localhost:5173", "https://exilum-2b7d4.web.app", "https://exilum-2b7d4.firebaseapp.com")
                 .allowedHeaders("*")
                 .allowCredentials(true);
     }

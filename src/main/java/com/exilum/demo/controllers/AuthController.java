@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.exilum.demo.model.auth.SignupRequest;
+import java.net.URI;
 
 import java.util.concurrent.TimeUnit;
 
@@ -56,9 +57,10 @@ public class AuthController {
             Cookie cookie = new Cookie("session", sessionCookie);
             cookie.setMaxAge((int) TimeUnit.MILLISECONDS.toSeconds(expirationTime));
             cookie.setHttpOnly(true); // Ensures cookie is not accessible via client-side javascript
-            cookie.setDomain("localhost"); // TODO change when deployed
-            cookie.setPath("/");
-
+            cookie.setDomain("exilum-2b7d4.firebaseapp.com"); // TODO change when deployed
+            // cookie.setPath("/");
+            cookie.setSecure(true);
+            cookie.setAttribute("SameSite", "None");
 
             // Add the cookie to the response
             response.addCookie(cookie);
@@ -85,6 +87,24 @@ public class AuthController {
         }
     }*/
 
+    @GetMapping("/sessionLogout")
+    public ResponseEntity<Void> clearSessionCookie(@CookieValue(name = "session", required = false) Cookie cookie, HttpServletResponse response) {
+        if (cookie != null) {
+            // Invalidate the cookie by setting its max age to 0
+            Cookie newCookie = new Cookie("session", null);
+            newCookie.setMaxAge(0);
+            newCookie.setHttpOnly(true);
+            newCookie.setSecure(true);
+            newCookie.setPath("/");
+            // newCookie.setDomain("exilum-2b7d4.firebaseapp.com");
+
+            // Add the invalidated cookie to the response
+            response.addCookie(newCookie);
+        }
+
+        // Redirect to the login page
+        return ResponseEntity.ok().build();
+    }
 
 
     @GetMapping("/test")
