@@ -72,6 +72,17 @@ public class AuthController {
         }
     }
 
+    @PostMapping("/signout")
+    public ResponseEntity<?> signOut(@RequestHeader("Authorization") String idToken, @RequestHeader("uid") String uid ) {
+        try {
+            // Invalidates the firebase refresh token (user has to sign in again to get a new valid token)
+            firebaseAuth.revokeRefreshTokens(uid);
+            return ResponseEntity.ok("User signed out successfully");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred: " + e.getMessage());
+        }
+    }
+
     @GetMapping("/test")
     public String sayHello() {
         return "this works";
