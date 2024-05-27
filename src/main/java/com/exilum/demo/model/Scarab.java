@@ -1,9 +1,9 @@
 package com.exilum.demo.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,19 +11,22 @@ import lombok.Setter;
 import org.springframework.beans.factory.annotation.Value;
 
 @Entity
-@Getter @Setter @AllArgsConstructor @NoArgsConstructor
-@Table(name = "scarabs_table_spring")
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Table(name = "Scarabs")
 public class Scarab {
     @Id
-    @NotBlank(message = "Scarab id can't be blank")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long scarab_id;
     @NotBlank(message = "Scarab name can't be blank")
     private String name;
-    @NotBlank(message = "Scarab mechanic can't be blank")
+    // @NotBlank(message = "Scarab mechanic can't be blank")
     private String mechanic;
-    @NotBlank(message = "Scarab limit can't be blank")
+    // @NotNull(message = "Scarab limit can't be blank")
     private Integer scarab_limit;
-    @NotBlank(message = "Scarab price can't be blank")
+    @NotNull(message = "Scarab price can't be blank")
     private Double price;
     @NotBlank(message = "Scarab image url can't be blank")
     private String icon_url;

@@ -5,6 +5,7 @@ import com.exilum.demo.model.DTO.CraftingMaterialDTO;
 import com.exilum.demo.model.DTO.DeliriumOrbDTO;
 import com.exilum.demo.model.DTO.MapDTO;
 import com.exilum.demo.model.DTO.ScarabDTO;
+import com.exilum.demo.model.Scarab;
 import com.exilum.demo.security.Permission;
 import com.exilum.demo.security.Role;
 import com.exilum.demo.service.fetching.CraftingMaterialFetchingService;
@@ -16,6 +17,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -76,6 +78,12 @@ public class AdminController {
         ScarabDTO[] result = scarabFetchingService.fetchScarabs();
 
         return result;
+    }
+
+    @GetMapping("/saveScarabs")
+    public ResponseEntity<String> saveScarabs() {
+        String msg = scarabFetchingService.fetchAndSaveScarabs();
+        return ResponseEntity.ok(msg);
     }
 
     @GetMapping("/testMaps")
