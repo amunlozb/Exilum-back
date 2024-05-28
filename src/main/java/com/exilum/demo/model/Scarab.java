@@ -19,17 +19,32 @@ import org.springframework.beans.factory.annotation.Value;
 public class Scarab {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long scarab_id;
+    @Column(name = "scarab_id")
+    private Integer scarab_id;
+
+    @Column(name = "name")
     @NotBlank(message = "Scarab name can't be blank")
     private String name;
+
+    @Column(name = "mechanic")
     // @NotBlank(message = "Scarab mechanic can't be blank")
     private String mechanic;
+
+    @Column(name = "scarab_limit")
     // @NotNull(message = "Scarab limit can't be blank")
     private Integer scarab_limit;
+
+    @Column(name = "price")
     @NotNull(message = "Scarab price can't be blank")
     private Double price;
+
+    @Column(name = "icon_url")
     @NotBlank(message = "Scarab image url can't be blank")
     private String icon_url;
+
+    public void setScarab_id(Integer scarab_id) {
+        this.scarab_id = scarab_id;
+    }
 
     // TODO: Add hardcore prices
 

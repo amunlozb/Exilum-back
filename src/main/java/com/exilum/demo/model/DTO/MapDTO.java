@@ -6,7 +6,7 @@ import lombok.Getter;
 public class MapDTO {
     private Long id;
     private String name;
-    private Integer mapTier;
+    private String mapTier;
     private Double mean;
     private String icon;
 

@@ -93,6 +93,13 @@ public class AdminController {
 
         return result;
     }
+
+    @GetMapping("/saveMaps")
+    public ResponseEntity<String> saveMaps() {
+        String msg = mapFetchingService.fetchAndSaveMaps();
+        return ResponseEntity.ok(msg);
+    }
+
     @GetMapping("/testDeliriumOrbs")
     @ResponseBody
     public DeliriumOrbDTO[] testDeliriumOrbs() {
@@ -100,6 +107,13 @@ public class AdminController {
 
         return result;
     }
+
+    @GetMapping("/saveDeliriumOrbs")
+    public ResponseEntity<String> saveDeliriumOrbs() {
+        String msg = deliriumOrbFetchingService.fetchAndSaveDeliriumOrbs();
+        return ResponseEntity.ok(msg);
+    }
+
     @GetMapping("/testCraftingMaterials")
     @ResponseBody
     public CraftingMaterialDTO[] testCraftingMaterials() {

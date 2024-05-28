@@ -9,6 +9,7 @@ public class DeliriumOrbDTO {
     private Double mean;
     private String icon;
 
+
     @Override
     public String toString() {
         return "DeliriumOrbDTO{" +

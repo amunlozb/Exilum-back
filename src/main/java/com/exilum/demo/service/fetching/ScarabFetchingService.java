@@ -24,16 +24,15 @@ public class ScarabFetchingService {
     }
 
     public String fetchAndSaveScarabs() {
-        ScarabDTO[] scarabDTOs = restTemplate.getForObject("http://localhost:8080/admin/testScarabs", ScarabDTO[].class);
+        ScarabDTO[] scarabDTOs = fetchScarabs();
 
         if (scarabDTOs != null) {
             for (ScarabDTO scarabDTO : scarabDTOs) {
                 Scarab scarab = new Scarab();
-                scarab.setScarab_id(scarabDTO.getId());
+                // scarab.setScarab_id(Math.toIntExact(scarabDTO.getId()));
                 scarab.setName(scarabDTO.getName());
                 scarab.setIcon_url(scarabDTO.getIcon());
                 scarab.setPrice(scarabDTO.getMean());
-                // Set other properties as needed
 
                 scarabRepository.save(scarab);
             }
