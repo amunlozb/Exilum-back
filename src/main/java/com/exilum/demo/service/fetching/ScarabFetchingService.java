@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.List;
+
 @Service
 public class ScarabFetchingService {
 
@@ -57,5 +59,9 @@ public class ScarabFetchingService {
         } else {
             return "An error occurred while fetching scarabs. Check poe.watch status.";
         }
+    }
+
+    public List<Scarab> getAllScarabs() {
+        return scarabRepository.findAll();
     }
 }

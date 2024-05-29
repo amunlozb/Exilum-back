@@ -51,7 +51,7 @@ public class Scarab {
 
     @Override
     public String toString() {
-        return "Scarab{" +
+        return "{" +
                 "scarab_id=" + scarab_id +
                 ", name='" + name + '\'' +
                 ", mechanic='" + mechanic + '\'' +
