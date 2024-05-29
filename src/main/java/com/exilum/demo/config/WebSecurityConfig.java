@@ -1,6 +1,5 @@
 package com.exilum.demo.config;
 
-import com.exilum.demo.config.FirebaseSessionFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -24,14 +23,17 @@ public class WebSecurityConfig {
                 .csrf().disable()
                 .authorizeRequests(authorize -> authorize
                         // Test Endpoints
-                        .requestMatchers("/api/test/public").permitAll()
+/*                        .requestMatchers("/api/test/public").permitAll()
                         .requestMatchers("/api/test/authenticated").authenticated()
                         .requestMatchers("/api/test/admin").hasRole("ADMIN")
                         // Auth Endpoints
-                        .requestMatchers("/api/auth/**").permitAll()
-                        .anyRequest().authenticated()
+                        .requestMatchers("/api/auth/**").permitAll()*/
+                        // .anyRequest().authenticated()
+                                .anyRequest().permitAll()
                 )
-                .addFilterBefore(firebaseSessionFilter(), UsernamePasswordAuthenticationFilter.class);
+                .oauth2ResourceServer(oauth2 -> oauth2.jwt(jwtConfigurer -> jwtConfigurer
+                        // Use the custom converter (defined under this)
+                        .jwtAuthenticationConverter(jwtAuthenticationConverter())));
 
         return http.build();
     }
@@ -46,10 +48,5 @@ public class WebSecurityConfig {
                         .collect(Collectors.toList())
         );
         return converter;
-    }
-
-    @Bean
-    public FirebaseSessionFilter firebaseSessionFilter() {
-        return new FirebaseSessionFilter();
     }
 }
