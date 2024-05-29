@@ -9,8 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class MapFetchingService {
@@ -69,6 +71,11 @@ public class MapFetchingService {
         }
     }
 
-
+    public List<Map> getAllMaps() {
+        List<Map> maps = mapRepository.findAll();
+        return maps.stream()
+                .sorted(Comparator.comparing(Map::getMap_tier, Comparator.nullsLast(String::compareTo)))
+                .collect(Collectors.toList());
+    }
 
 }
