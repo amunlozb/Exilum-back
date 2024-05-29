@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ScarabFetchingService {
@@ -61,7 +63,13 @@ public class ScarabFetchingService {
         }
     }
 
+    // return the scarabs SORTED BY MECHANIC (for easier highlighting)
     public List<Scarab> getAllScarabs() {
-        return scarabRepository.findAll();
+        List<Scarab> scarabs = scarabRepository.findAll();
+        return scarabs.stream()
+                .sorted(Comparator.comparing(Scarab::getMechanic))
+
+                .collect(Collectors.toList());
     }
+
 }
