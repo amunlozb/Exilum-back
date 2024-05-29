@@ -4,9 +4,9 @@ import lombok.Getter;
 
 @Getter
 public class MapDTO {
-    private Long id;
+    private Integer id;
     private String name;
-    private Integer mapTier;
+    private String mapTier;
     private Double mean;
     private String icon;
 

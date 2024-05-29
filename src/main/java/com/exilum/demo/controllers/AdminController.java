@@ -5,6 +5,7 @@ import com.exilum.demo.model.DTO.CraftingMaterialDTO;
 import com.exilum.demo.model.DTO.DeliriumOrbDTO;
 import com.exilum.demo.model.DTO.MapDTO;
 import com.exilum.demo.model.DTO.ScarabDTO;
+import com.exilum.demo.model.Scarab;
 import com.exilum.demo.security.Permission;
 import com.exilum.demo.security.Role;
 import com.exilum.demo.service.fetching.CraftingMaterialFetchingService;
@@ -16,6 +17,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -78,6 +80,18 @@ public class AdminController {
         return result;
     }
 
+    @GetMapping("/saveScarabs")
+    public ResponseEntity<String> saveScarabs() {
+        String msg = scarabFetchingService.fetchAndSaveScarabs();
+        return ResponseEntity.ok(msg);
+    }
+
+    @GetMapping("/updateScarabs")
+    public ResponseEntity<String> updateScarabs() {
+        String msg = scarabFetchingService.updatePricesScarabs();
+        return ResponseEntity.ok(msg);
+    }
+
     @GetMapping("/testMaps")
     @ResponseBody
     public MapDTO[] testMaps() {
@@ -85,6 +99,19 @@ public class AdminController {
 
         return result;
     }
+
+    @GetMapping("/saveMaps")
+    public ResponseEntity<String> saveMaps() {
+        String msg = mapFetchingService.fetchAndSaveMaps();
+        return ResponseEntity.ok(msg);
+    }
+
+    @GetMapping("/updateMaps")
+    public ResponseEntity<String> updateMaps() {
+        String msg = mapFetchingService.updatePricesMaps();
+        return ResponseEntity.ok(msg);
+    }
+
     @GetMapping("/testDeliriumOrbs")
     @ResponseBody
     public DeliriumOrbDTO[] testDeliriumOrbs() {
@@ -92,6 +119,19 @@ public class AdminController {
 
         return result;
     }
+
+    @GetMapping("/saveDeliriumOrbs")
+    public ResponseEntity<String> saveDeliriumOrbs() {
+        String msg = deliriumOrbFetchingService.fetchAndSaveDeliriumOrbs();
+        return ResponseEntity.ok(msg);
+    }
+
+    @GetMapping("/updateDeliriumOrbs")
+    public ResponseEntity<String> updateDeliriumOrbs() {
+        String msg = deliriumOrbFetchingService.updatePricesDeliriumOrbs();
+        return ResponseEntity.ok(msg);
+    }
+
     @GetMapping("/testCraftingMaterials")
     @ResponseBody
     public CraftingMaterialDTO[] testCraftingMaterials() {

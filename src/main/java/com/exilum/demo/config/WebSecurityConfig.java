@@ -23,12 +23,13 @@ public class WebSecurityConfig {
                 .csrf().disable()
                 .authorizeRequests(authorize -> authorize
                         // Test Endpoints
-                        .requestMatchers("/api/test/public").permitAll()
+/*                        .requestMatchers("/api/test/public").permitAll()
                         .requestMatchers("/api/test/authenticated").authenticated()
                         .requestMatchers("/api/test/admin").hasRole("ADMIN")
                         // Auth Endpoints
-                        .requestMatchers("/api/auth/**").permitAll()
-                        .anyRequest().authenticated()
+                        .requestMatchers("/api/auth/**").permitAll()*/
+                        // .anyRequest().authenticated()
+                                .anyRequest().permitAll()
                 )
                 .oauth2ResourceServer(oauth2 -> oauth2.jwt(jwtConfigurer -> jwtConfigurer
                         // Use the custom converter (defined under this)
