@@ -114,6 +114,12 @@ public class AdminController {
         return ResponseEntity.ok(msg);
     }
 
+    @GetMapping("/updateDeliriumOrbs")
+    public ResponseEntity<String> updateDeliriumOrbs() {
+        String msg = deliriumOrbFetchingService.updatePricesDeliriumOrbs();
+        return ResponseEntity.ok(msg);
+    }
+
     @GetMapping("/testCraftingMaterials")
     @ResponseBody
     public CraftingMaterialDTO[] testCraftingMaterials() {

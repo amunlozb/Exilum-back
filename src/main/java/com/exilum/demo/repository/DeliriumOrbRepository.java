@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface DeliriumOrbRepository extends JpaRepository<DeliriumOrb, Integer> {
+    DeliriumOrb findByName(String name);
 }

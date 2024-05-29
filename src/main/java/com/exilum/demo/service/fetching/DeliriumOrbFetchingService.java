@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Arrays;
+
 @Service
 public class DeliriumOrbFetchingService {
     // poe.watch documentation: https://docs.poe.watch/#categories
@@ -38,6 +40,23 @@ public class DeliriumOrbFetchingService {
                 deliriumOrbRepository.save(deliriumOrb);
             }
             return "Delirium Orbs saved successfully";
+        } else {
+            return "An error occurred while fetching Delirium Orbs. Check poe.watch status.";
+        }
+    }
+
+    public String updatePricesDeliriumOrbs() {
+        DeliriumOrbDTO[] deliriumOrbDTOs = fetchDeliriumOrbs();
+
+        if (deliriumOrbDTOs != null) {
+            for (DeliriumOrbDTO deliriumOrbDTO : deliriumOrbDTOs) {
+                DeliriumOrb deliriumOrb = deliriumOrbRepository.findByName(deliriumOrbDTO.getName());
+                if (deliriumOrb != null) {
+                    deliriumOrb.setPrice(deliriumOrbDTO.getMean());
+                    deliriumOrbRepository.save(deliriumOrb);
+                }
+            }
+            return "Delirium Orb prices updated successfully";
         } else {
             return "An error occurred while fetching Delirium Orbs. Check poe.watch status.";
         }
