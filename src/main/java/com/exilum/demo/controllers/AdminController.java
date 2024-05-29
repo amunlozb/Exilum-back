@@ -86,6 +86,12 @@ public class AdminController {
         return ResponseEntity.ok(msg);
     }
 
+    @GetMapping("/updateScarabs")
+    public ResponseEntity<String> updateScarabs() {
+        String msg = scarabFetchingService.updatePricesScarabs();
+        return ResponseEntity.ok(msg);
+    }
+
     @GetMapping("/testMaps")
     @ResponseBody
     public MapDTO[] testMaps() {
@@ -97,6 +103,12 @@ public class AdminController {
     @GetMapping("/saveMaps")
     public ResponseEntity<String> saveMaps() {
         String msg = mapFetchingService.fetchAndSaveMaps();
+        return ResponseEntity.ok(msg);
+    }
+
+    @GetMapping("/updateMaps")
+    public ResponseEntity<String> updateMaps() {
+        String msg = mapFetchingService.updatePricesMaps();
         return ResponseEntity.ok(msg);
     }
 

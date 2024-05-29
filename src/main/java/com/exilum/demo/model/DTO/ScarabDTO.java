@@ -4,7 +4,7 @@ import lombok.Getter;
 
 @Getter
 public class ScarabDTO {
-    private Long id;
+    private Integer id;
     private String name;
     private String icon;
     private Double mean;

@@ -42,5 +42,20 @@ public class ScarabFetchingService {
         }
     }
 
+    public String updatePricesScarabs() {
+        ScarabDTO[] scarabDTOs = fetchScarabs();
 
+        if (scarabDTOs != null) {
+            for (ScarabDTO scarabDTO : scarabDTOs) {
+                Scarab scarab = scarabRepository.findByName(scarabDTO.getName());
+                if (scarab != null) {
+                    scarab.setPrice(scarabDTO.getMean());
+                    scarabRepository.save(scarab);
+                }
+            }
+            return "Scarab prices updated successfully";
+        } else {
+            return "An error occurred while fetching scarabs. Check poe.watch status.";
+        }
+    }
 }

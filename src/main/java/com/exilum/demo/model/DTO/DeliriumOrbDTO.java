@@ -4,7 +4,7 @@ import lombok.Getter;
 
 @Getter
 public class DeliriumOrbDTO {
-    private Long id;
+    private Integer id;
     private String name;
     private Double mean;
     private String icon;

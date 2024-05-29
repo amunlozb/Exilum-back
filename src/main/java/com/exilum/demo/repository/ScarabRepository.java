@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ScarabRepository extends JpaRepository<Scarab, Integer> {
+    Scarab findByName(String name);
 }
