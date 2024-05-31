@@ -24,7 +24,7 @@ public class Map {
     private String icon_url;
 
     @Column(name = "map_tier")
-    private String map_tier;
+    private String mapTier;
 
     @Column(name = "price")
     private double price;
