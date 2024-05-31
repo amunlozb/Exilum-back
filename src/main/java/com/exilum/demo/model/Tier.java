@@ -1,5 +1,8 @@
 package com.exilum.demo.model;
 
+import lombok.Getter;
+
+@Getter
 public enum Tier {
     WHITE(1, 5),
     YELLOW(6, 10),
@@ -13,14 +16,6 @@ public enum Tier {
     Tier(int minTier, int maxTier) {
         this.minTier = minTier;
         this.maxTier = maxTier;
-    }
-
-    public int getMinTier() {
-        return minTier;
-    }
-
-    public int getMaxTier() {
-        return maxTier;
     }
 }
 

@@ -12,7 +12,6 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.Comparator;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -25,9 +24,8 @@ public class MapFetchingService {
     private MapRepository mapRepository;
 
     public MapDTO[] fetchMaps() {
-        MapDTO[] result = restTemplate.getForObject(uri, MapDTO[].class);
 
-        return result;
+        return restTemplate.getForObject(uri, MapDTO[].class);
     }
 
     public String fetchAndSaveMaps() {

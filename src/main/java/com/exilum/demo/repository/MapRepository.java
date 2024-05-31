@@ -1,7 +1,6 @@
 package com.exilum.demo.repository;
 
 import com.exilum.demo.model.Map;
-import com.exilum.demo.model.Tier;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
