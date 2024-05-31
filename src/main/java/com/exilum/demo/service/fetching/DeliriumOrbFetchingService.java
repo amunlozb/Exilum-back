@@ -2,12 +2,14 @@ package com.exilum.demo.service.fetching;
 
 import com.exilum.demo.model.DeliriumOrb;
 import com.exilum.demo.model.DTO.DeliriumOrbDTO;
+import com.exilum.demo.model.Map;
 import com.exilum.demo.repository.DeliriumOrbRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Arrays;
+import java.util.List;
 
 @Service
 public class DeliriumOrbFetchingService {
@@ -61,4 +63,9 @@ public class DeliriumOrbFetchingService {
             return "An error occurred while fetching Delirium Orbs. Check poe.watch status.";
         }
     }
+
+    public List<DeliriumOrb> getAllDeliriumOrbs() {
+        return deliriumOrbRepository.findAll();
+    }
+
 }

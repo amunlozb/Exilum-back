@@ -1,7 +1,9 @@
 package com.exilum.demo.controllers;
 
+import com.exilum.demo.model.DeliriumOrb;
 import com.exilum.demo.model.Map;
 import com.exilum.demo.model.Scarab;
+import com.exilum.demo.service.fetching.DeliriumOrbFetchingService;
 import com.exilum.demo.service.fetching.MapFetchingService;
 import com.exilum.demo.service.fetching.ScarabFetchingService;
 import com.google.firebase.auth.FirebaseAuth;
@@ -29,6 +31,8 @@ public class WebController {
 
     @Autowired
     MapFetchingService mapFetchingService;
+    @Autowired
+    DeliriumOrbFetchingService deliriumOrbFetchingService;
 
     @GetMapping(path = "/getName")
     public String getUserName(Principal principal) {
@@ -55,5 +59,11 @@ public class WebController {
     public ResponseEntity<Object> getMaps() {
         List<Map> maps = mapFetchingService.getAllMaps();
         return ResponseEntity.ok(maps);
+    }
+
+    @GetMapping(path = "/getDeliriumOrbs")
+    public ResponseEntity<Object> getDeliriumOrbs() {
+        List<DeliriumOrb> deliriumOrbs = deliriumOrbFetchingService.getAllDeliriumOrbs();
+        return ResponseEntity.ok(deliriumOrbs);
     }
 }

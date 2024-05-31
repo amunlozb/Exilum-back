@@ -2,6 +2,7 @@ package com.exilum.demo.controllers;
 
 import com.exilum.demo.model.Map;
 import com.exilum.demo.model.Tier;
+import com.exilum.demo.service.fetching.DeliriumOrbFetchingService;
 import com.exilum.demo.service.fetching.MapFetchingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,8 @@ import java.util.List;
 public class TestController {
     @Autowired
     MapFetchingService mapFetchingService;
+    @Autowired
+    DeliriumOrbFetchingService deliriumOrbFetchingService;
 
     @GetMapping("/public")
     public ResponseEntity<String> publicEndpoint() {
@@ -48,5 +51,10 @@ public class TestController {
     @GetMapping("getBlightedMaps")
     public ResponseEntity<Object> getBlightedMaps() {
         return ResponseEntity.ok(mapFetchingService.getBlightedMaps());
+    }
+
+    @GetMapping("getDeliriumOrbsTest")
+    public ResponseEntity<Object> getDeliriumOrbsTest() {
+        return ResponseEntity.ok(deliriumOrbFetchingService.fetchDeliriumOrbs());
     }
 }
