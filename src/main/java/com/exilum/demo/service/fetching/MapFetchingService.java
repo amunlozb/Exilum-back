@@ -82,26 +82,31 @@ public class MapFetchingService {
                     .filter(map -> Integer.parseInt(map.getMapTier()) >= 1 && Integer.parseInt(map.getMapTier()) <= 5)
                     .sorted(Comparator.comparing(Map::getMapTier))
                     .collect(Collectors.toList());
-        } else if (tier.equals(Tier.YELLOW.toString())) {
-            return mapRepository.findByMapTierBetween(6, 10).stream()
+
+        } else if (tier.equals(Tier.YELLOW.name())) {
+            return mapRepository.findAll().stream()
                     // remove blighted maps (they will come from a separate method)
                     .filter(map -> !map.getName().contains("Blight"))
+                    .filter(map -> !(map.getMapTier() == null))
                     .filter(map -> Integer.parseInt(map.getMapTier()) >= 6 && Integer.parseInt(map.getMapTier()) <= 10)
                     .sorted(Comparator.comparing(Map::getMapTier))
                     .collect(Collectors.toList());
-        } else if (tier.equals(Tier.RED.toString())) {
+
+        } else if (tier.equals(Tier.RED.name())) {
             return mapRepository.findByMapTierBetween(11, 16).stream()
                     // remove blighted maps (they will come from a separate method)
                     .filter(map -> !map.getName().contains("Blight"))
                     .filter(map -> Integer.parseInt(map.getMapTier()) >= 11 && Integer.parseInt(map.getMapTier()) <= 16)
                     .sorted(Comparator.comparing(Map::getMapTier))
                     .collect(Collectors.toList());
-        } else if (tier.equals( Tier.T17.toString())) {
+
+        } else if (tier.equals( Tier.T17.name())) {
             return mapRepository.findByMapTier("17").stream()
                     // remove blighted maps (they will come from a separate method)
                     .filter(map -> !map.getName().contains("Blight"))
                     .collect(Collectors.toList());
-        } else if (tier.equals( Tier.OTHER.toString())) {
+
+        } else if (tier.equals( Tier.OTHER.name())) {
             return mapRepository.findByMapTierIsNull();
         } else {
             return null;
