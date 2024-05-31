@@ -2,13 +2,11 @@ package com.exilum.demo.service.fetching;
 
 import com.exilum.demo.model.DeliriumOrb;
 import com.exilum.demo.model.DTO.DeliriumOrbDTO;
-import com.exilum.demo.model.Map;
 import com.exilum.demo.repository.DeliriumOrbRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -21,9 +19,8 @@ public class DeliriumOrbFetchingService {
     private DeliriumOrbRepository deliriumOrbRepository;
 
     public DeliriumOrbDTO[] fetchDeliriumOrbs() {
-        DeliriumOrbDTO[] result = restTemplate.getForObject(uri, DeliriumOrbDTO[].class);
 
-        return result;
+        return restTemplate.getForObject(uri, DeliriumOrbDTO[].class);
     }
 
     public String fetchAndSaveDeliriumOrbs() {
