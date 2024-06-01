@@ -12,6 +12,4 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class ExilumApplicationTests {
 
-    @Autowired
-    private ScarabRepository scarabRepository;
 }
