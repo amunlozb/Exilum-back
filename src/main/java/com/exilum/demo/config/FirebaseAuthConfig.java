@@ -24,11 +24,11 @@ public class FirebaseAuthConfig {
     FirebaseAuth firebaseAuth() throws IOException {
         // Decode the base64 encoded service account JSON
         byte[] serviceAccountBytes = Base64.getDecoder().decode(serviceAccountEnv);
-        String serviceAccountJson = new String(serviceAccountBytes, StandardCharsets.UTF_8);
+        System.out.println("LIBELULA: " + new String(serviceAccountBytes));
 
         // Set options = Read credentials from the decoded JSON
         var options = FirebaseOptions.builder()
-                .setCredentials(GoogleCredentials.fromStream(new ByteArrayInputStream(serviceAccountJson.getBytes())))
+                .setCredentials(GoogleCredentials.fromStream(new ByteArrayInputStream(serviceAccountBytes)))
                 .build();
 
         // Initialize app with the options
