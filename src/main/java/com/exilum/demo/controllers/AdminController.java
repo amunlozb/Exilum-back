@@ -47,8 +47,6 @@ public class AdminController {
 
 
     private final UserManagementService userManagementService;
-    @Autowired
-    private CraftingMaterialRepository craftingMaterialRepository;
 
     // TODO: add return msg
     @PostMapping(path = "/roles/{uid}")

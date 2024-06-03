@@ -1,9 +1,6 @@
 package com.exilum.demo.controllers;
 
-import com.exilum.demo.repository.CraftingMaterialRepository;
-import com.exilum.demo.service.fetching.DeliriumOrbFetchingService;
-import com.exilum.demo.service.fetching.MapFetchingService;
-import com.exilum.demo.service.fetching.ScarabFetchingService;
+import com.exilum.demo.service.fetching.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -26,7 +23,9 @@ public class WebController {
     @Autowired
     DeliriumOrbFetchingService deliriumOrbFetchingService;
     @Autowired
-    CraftingMaterialRepository craftingMaterialRepository;
+    DeviceCraftFetchingService deviceCraftFetchingService;
+    @Autowired
+    CraftingMaterialFetchingService craftingMaterialFetchingService;
 
     @GetMapping(path = "/getName")
     public String getUserName(Principal principal) {
@@ -61,6 +60,11 @@ public class WebController {
 
     @GetMapping(path = "/getCraftingMaterials")
     public ResponseEntity<Object> getCraftingMaterials() {
-        return ResponseEntity.ok(craftingMaterialRepository.findAll());
+        return ResponseEntity.ok(craftingMaterialFetchingService.getAllCraftingMaterials());
+    }
+
+    @GetMapping(path = "/getDeviceCrafts")
+    public ResponseEntity<Object> getDeviceCrafts() {
+        return ResponseEntity.ok(deviceCraftFetchingService.getAllDeviceCrafts());
     }
 }
