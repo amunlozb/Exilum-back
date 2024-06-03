@@ -6,6 +6,7 @@ import com.exilum.demo.model.DTO.DeliriumOrbDTO;
 import com.exilum.demo.model.DTO.MapDTO;
 import com.exilum.demo.model.DTO.ScarabDTO;
 import com.exilum.demo.model.Scarab;
+import com.exilum.demo.repository.CraftingMaterialRepository;
 import com.exilum.demo.security.Permission;
 import com.exilum.demo.security.Role;
 import com.exilum.demo.service.fetching.CraftingMaterialFetchingService;
@@ -46,6 +47,8 @@ public class AdminController {
 
 
     private final UserManagementService userManagementService;
+    @Autowired
+    private CraftingMaterialRepository craftingMaterialRepository;
 
     // TODO: add return msg
     @PostMapping(path = "/roles/{uid}")
@@ -140,6 +143,16 @@ public class AdminController {
         return result;
     }
 
+    @GetMapping("/saveCraftingMaterials")
+    public ResponseEntity<String> saveCraftingMaterials() {
+        String msg = craftingMaterialFetchingService.fetchAndSaveCraftingMaterials();
+        return ResponseEntity.ok(msg);
+    }
 
+    @GetMapping("/updateCraftingMaterials")
+    public ResponseEntity<String> updateCraftingMaterials() {
+        String msg = craftingMaterialFetchingService.updatePricesCraftingMaterials();
+        return ResponseEntity.ok(msg);
+    }
 
 }

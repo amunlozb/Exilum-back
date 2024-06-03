@@ -31,7 +31,7 @@ public class DeliriumOrbFetchingService {
             for (DeliriumOrbDTO deliriumOrbDTO : deliriumOrbDTOs) {
                 DeliriumOrb deliriumOrb = new DeliriumOrb();
 
-                deliriumOrb.setId(12);
+                deliriumOrb.setId(deliriumOrbDTO.getId());
                 deliriumOrb.setName(deliriumOrbDTO.getName());
                 deliriumOrb.setPrice(deliriumOrbDTO.getMean());
                 deliriumOrb.setIcon_url(deliriumOrbDTO.getIcon());

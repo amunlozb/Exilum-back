@@ -1,5 +1,6 @@
 package com.exilum.demo.controllers;
 
+import com.exilum.demo.repository.CraftingMaterialRepository;
 import com.exilum.demo.service.fetching.DeliriumOrbFetchingService;
 import com.exilum.demo.service.fetching.MapFetchingService;
 import com.exilum.demo.service.fetching.ScarabFetchingService;
@@ -20,11 +21,12 @@ import java.security.Principal;
 public class WebController {
     @Autowired
     ScarabFetchingService scarabFetchingService;
-
     @Autowired
     MapFetchingService mapFetchingService;
     @Autowired
     DeliriumOrbFetchingService deliriumOrbFetchingService;
+    @Autowired
+    CraftingMaterialRepository craftingMaterialRepository;
 
     @GetMapping(path = "/getName")
     public String getUserName(Principal principal) {
@@ -55,5 +57,10 @@ public class WebController {
     @GetMapping(path = "/getDeliriumOrbs")
     public ResponseEntity<Object> getDeliriumOrbs() {
         return ResponseEntity.ok(deliriumOrbFetchingService.getAllDeliriumOrbs());
+    }
+
+    @GetMapping(path = "/getCraftingMaterials")
+    public ResponseEntity<Object> getCraftingMaterials() {
+        return ResponseEntity.ok(craftingMaterialRepository.findAll());
     }
 }
