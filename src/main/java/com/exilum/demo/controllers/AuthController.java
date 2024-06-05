@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -65,7 +66,7 @@ public class AuthController {
                 List<String> userRoles = (List<String>) claims.get("custom_claims");
                 return ResponseEntity.ok().body(userRoles);
             } else {
-                return ResponseEntity.ok().body("User has no roles");
+                return ResponseEntity.ok().body(Collections.singletonList("USER"));
             }
         } catch (FirebaseAuthException e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Unauthorized");
