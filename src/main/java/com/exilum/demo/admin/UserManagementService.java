@@ -62,4 +62,19 @@ public class UserManagementService {
         List<Role> roles = Collections.singletonList(Role.ADMIN);
         return setRoleUserClaims(uid, roles);
     }
+
+    public String grantAdminRoleByEmail(String email) throws FirebaseAuthException {
+        // Get the user's UID based on their email
+        String uid = FirebaseAuth.getInstance().getUserByEmail(email).getUid();
+
+        List<Role> roles = Collections.singletonList(Role.ADMIN);
+        return setRoleUserClaims(uid, roles);
+    }
+
+    public String revokeAdminRoleByEmail(String email) throws FirebaseAuthException {
+        // Get the user's UID based on their email
+        String uid = FirebaseAuth.getInstance().getUserByEmail(email).getUid();
+
+        return setRoleUserClaims(uid, Collections.emptyList());
+    }
 }

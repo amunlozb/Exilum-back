@@ -58,10 +58,24 @@ public class AdminController {
         }
     }
 
-    @GetMapping("/authorities")
-    public Collection<? extends GrantedAuthority> getUserAuthorities(Authentication authentication) {
-        // Get the authorities associated with the authenticated user
-        return authentication.getAuthorities();
+    @PostMapping("/grantAdminByEmail")
+    public ResponseEntity<?> grantAdminRoleByEmail(@RequestParam String email) {
+        try {
+            String customToken = userManagementService.grantAdminRoleByEmail(email);
+            return ResponseEntity.ok(customToken);
+        } catch (FirebaseAuthException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
+    }
+
+    @PostMapping("/revokeAdminByEmail")
+    public ResponseEntity<?> revokeAdminRoleByEmail(@RequestParam String email) {
+        try {
+            String customToken = userManagementService.revokeAdminRoleByEmail(email);
+            return ResponseEntity.ok(customToken);
+        } catch (FirebaseAuthException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
     }
 
     @GetMapping("/testScarabs")
