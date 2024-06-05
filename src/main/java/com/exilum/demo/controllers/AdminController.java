@@ -18,6 +18,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -41,30 +42,20 @@ public class AdminController {
     DeliriumOrbFetchingService deliriumOrbFetchingService;
     @Autowired
     CraftingMaterialFetchingService craftingMaterialFetchingService;
+    @Autowired
+    private UserManagementService userManagementService;
 
     // TODO: check if actually needed
     Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-
-    private final UserManagementService userManagementService;
-
-    // TODO: add return msg
-    @PostMapping(path = "/roles/{uid}")
-    public String setRolesUserClaims(
-            @PathVariable String uid,
-            @RequestBody Role requestedRole
-    ) throws FirebaseAuthException {
+    @PostMapping("/grantAdminRole/{uid}")
+    public ResponseEntity<?> grantAdminRole(@PathVariable String uid) {
         try {
-            if (requestedRole == null) {
-                // Handle case where requestedRole is null
-                return "Requested role is null";
-            }
-
-            return(userManagementService.setRolesNew(uid, requestedRole));
+            String customToken = userManagementService.grantAdminRole(uid);
+            return ResponseEntity.ok(customToken);
         } catch (FirebaseAuthException e) {
-            return e.getMessage();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
-
     }
 
     @GetMapping("/authorities")

@@ -8,6 +8,7 @@ import com.google.firebase.auth.FirebaseToken;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -55,5 +56,10 @@ public class UserManagementService {
         String customToken = FirebaseAuth.getInstance().createCustomToken(uid, additionalClaims);
         return customToken;
 
+    }
+    
+    public String grantAdminRole(String uid) throws FirebaseAuthException {
+        List<Role> roles = Collections.singletonList(Role.ADMIN);
+        return setRoleUserClaims(uid, roles);
     }
 }
