@@ -46,17 +46,6 @@ public class UserManagementService {
     private String generateCustomToken(String uid) throws FirebaseAuthException {
         return FirebaseAuth.getInstance().createCustomToken(uid);
     }
-
-
-    public String setRolesNew(String uid, Role requestedRole) throws FirebaseAuthException {
-        Map<String, Object> additionalClaims = new HashMap<String, Object>();
-
-        additionalClaims.put(requestedRole.name(), true);
-
-        String customToken = FirebaseAuth.getInstance().createCustomToken(uid, additionalClaims);
-        return customToken;
-
-    }
     
     public String grantAdminRole(String uid) throws FirebaseAuthException {
         List<Role> roles = Collections.singletonList(Role.ADMIN);
