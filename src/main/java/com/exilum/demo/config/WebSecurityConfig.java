@@ -30,6 +30,8 @@
                             .requestMatchers("/api/test/admin").hasRole("ADMIN")
                             // Auth Endpoints
                             .requestMatchers("/api/auth/**").permitAll()
+                            // Web Endpoints
+                            .requestMatchers("/api/**").permitAll()
                             .anyRequest().authenticated()
                     )
                     .oauth2ResourceServer(oauth2 -> oauth2.jwt(jwtConfigurer -> jwtConfigurer
