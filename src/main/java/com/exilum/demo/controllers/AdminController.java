@@ -48,6 +48,12 @@ public class AdminController {
     // TODO: check if actually needed
     Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
+    @PreAuthorize("hasRole('ADMIN')")
+    @PostMapping("/checkAdmin")
+    public ResponseEntity<?> checkAdmin() {
+        return ResponseEntity.ok("Admin Verified Successfully");
+    }
+
     @PostMapping("/grantAdminRole/{uid}")
     public ResponseEntity<?> grantAdminRole(@PathVariable String uid) {
         try {
