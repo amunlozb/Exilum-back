@@ -33,7 +33,7 @@ public class CraftingMaterialFetchingService {
         // Filter result to only include chisels, alchemy orbs, vaal orbs, scouring orbs
         return Arrays.stream(result)
                 .filter(c -> materials.contains(c.getName()))
-                .collect(Collectors.toList())
+                .toList()
                 .toArray(new CraftingMaterialDTO[0]);
     }
 

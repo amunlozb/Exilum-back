@@ -15,7 +15,6 @@ import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
-// This service should be callable from a REST endpoint so that administrators are able to grant or deny users permissions.
 public class UserManagementService {
 
     public String setRoleUserClaims(String uid, List<Role> requestedRoles) throws FirebaseAuthException {
@@ -37,7 +36,7 @@ public class UserManagementService {
         try {
             FirebaseAuth.getInstance().setCustomUserClaims(uid, claims);
             System.out.println(generateCustomToken(uid));
-            return generateCustomToken(uid); // Generate and return a new custom token
+            return generateCustomToken(uid);
         } catch (FirebaseAuthException e) {
             return e.getMessage();
         }

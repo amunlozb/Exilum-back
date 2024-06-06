@@ -111,6 +111,7 @@ public class MapFetchingService {
         }
     }
 
+    // adding just in case its needed in the future, currently not used
     public List<Map> getAllMaps() {
         List<Map> maps = mapRepository.findAll();
         return maps.stream()

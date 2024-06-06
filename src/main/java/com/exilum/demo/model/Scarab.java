@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Value;
 @NoArgsConstructor
 @Table(name = "Scarabs")
 public class Scarab {
+    @Setter
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "scarab_id")
@@ -42,12 +43,7 @@ public class Scarab {
     @NotBlank(message = "Scarab image url can't be blank")
     private String icon_url;
 
-    public void setScarab_id(Integer scarab_id) {
-        this.scarab_id = scarab_id;
-    }
-
     // TODO: Add hardcore prices
-
 
     @Override
     public String toString() {

@@ -12,6 +12,7 @@ public interface MapRepository extends JpaRepository<Map, Integer> {
     List<Map> findByName(String name);
     List<Map> findByMapTier(String tier);
 
+    // had to use custom query for this
     @Query("SELECT m FROM Map m WHERE m.mapTier BETWEEN :min AND :max")
     List<Map> findByMapTierBetween(int min, int max);
     List<Map> findByMapTierIsNull();
