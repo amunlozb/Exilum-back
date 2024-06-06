@@ -41,20 +41,4 @@ public class TestController {
         return ResponseEntity.ok().body(message);
     }
 
-    @GetMapping("getMapsByTierTest")
-    public ResponseEntity<Object> getMapsByTierTest(@RequestParam Tier inputTier) {
-        String selectedTier = inputTier.name();
-        List<Map> maps = mapFetchingService.findByTier(selectedTier);
-        return ResponseEntity.ok(maps);
-    }
-
-    @GetMapping("getBlightedMaps")
-    public ResponseEntity<Object> getBlightedMaps() {
-        return ResponseEntity.ok(mapFetchingService.getBlightedMaps());
-    }
-
-    @GetMapping("getDeliriumOrbsTest")
-    public ResponseEntity<Object> getDeliriumOrbsTest() {
-        return ResponseEntity.ok(deliriumOrbFetchingService.fetchDeliriumOrbs());
-    }
 }
