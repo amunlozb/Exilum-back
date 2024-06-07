@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface DeviceCraftRepository extends JpaRepository<DeviceCraft, Integer> {
+    DeviceCraft findByName(String name);
 }

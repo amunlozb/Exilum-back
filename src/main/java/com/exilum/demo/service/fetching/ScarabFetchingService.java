@@ -1,6 +1,7 @@
 package com.exilum.demo.service.fetching;
 
 import com.exilum.demo.model.DTO.ScarabDTO;
+import com.exilum.demo.model.Map;
 import com.exilum.demo.model.Scarab;
 import com.exilum.demo.repository.ScarabRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,6 +71,14 @@ public class ScarabFetchingService {
                 .sorted(Comparator.comparing(Scarab::getMechanic))
 
                 .collect(Collectors.toList());
+    }
+
+    public Double findPriceByName(String name) {
+        Scarab found = scarabRepository.findByName(name);
+        if (found != null) {
+            return found.getPrice();
+        }
+        return 0d;
     }
 
 }

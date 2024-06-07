@@ -1,5 +1,6 @@
 package com.exilum.demo.service.fetching;
 
+import com.exilum.demo.model.CraftingMaterial;
 import com.exilum.demo.model.DeliriumOrb;
 import com.exilum.demo.model.DTO.DeliriumOrbDTO;
 import com.exilum.demo.repository.DeliriumOrbRepository;
@@ -63,6 +64,14 @@ public class DeliriumOrbFetchingService {
 
     public List<DeliriumOrb> getAllDeliriumOrbs() {
         return deliriumOrbRepository.findAll();
+    }
+
+    public Double findPriceByName(String name) {
+        DeliriumOrb found = deliriumOrbRepository.findByName(name);
+        if (found != null) {
+            return found.getPrice();
+        }
+        return 0d;
     }
 
 }

@@ -125,4 +125,12 @@ public class MapFetchingService {
                 .filter(map -> map.getName().contains("Blighted"))
                 .collect(Collectors.toList());
     }
+
+    public Double findPriceByName(String name) {
+        Map found = mapRepository.findByName(name).get(0);
+        if (found != null) {
+            return found.getPrice();
+        }
+        return 0d;
+    }
 }
