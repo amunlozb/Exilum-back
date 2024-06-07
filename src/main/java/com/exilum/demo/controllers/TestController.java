@@ -2,6 +2,7 @@ package com.exilum.demo.controllers;
 
 import com.exilum.demo.model.Map;
 import com.exilum.demo.model.Tier;
+import com.exilum.demo.service.fetching.CraftingMaterialFetchingService;
 import com.exilum.demo.service.fetching.DeliriumOrbFetchingService;
 import com.exilum.demo.service.fetching.MapFetchingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,8 @@ public class TestController {
     MapFetchingService mapFetchingService;
     @Autowired
     DeliriumOrbFetchingService deliriumOrbFetchingService;
+    @Autowired
+    CraftingMaterialFetchingService craftingMaterialFetchingService;
 
     @GetMapping("/public")
     public ResponseEntity<String> publicEndpoint() {
@@ -39,6 +42,12 @@ public class TestController {
     public ResponseEntity<String> adminEndpoint() {
         String message = "This is an admin endpoint.";
         return ResponseEntity.ok().body(message);
+    }
+
+    @GetMapping(path = "/getPriceByNameCraftingMaterial")
+    public ResponseEntity<Double> getPriceByNameCraftingMaterial(@RequestParam String inputName) {
+
+        return ResponseEntity.ok(craftingMaterialFetchingService.findPriceByName(inputName));
     }
 
 }

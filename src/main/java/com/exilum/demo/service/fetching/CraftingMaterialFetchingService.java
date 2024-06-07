@@ -77,6 +77,14 @@ public class CraftingMaterialFetchingService {
     public List<CraftingMaterial> getAllCraftingMaterials() {
         return craftingMaterialRepository.findAll();
     }
+
+    public Double findPriceByName(String name) {
+        CraftingMaterial found = craftingMaterialRepository.findByName(name);
+        if (found != null) {
+            return found.getPrice();
+        }
+        return 0d;
+    }
 }
 
 
