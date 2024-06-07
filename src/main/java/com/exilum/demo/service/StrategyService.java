@@ -3,20 +3,16 @@ package com.exilum.demo.service;
 import com.exilum.demo.model.*;
 import com.exilum.demo.model.DTO.strategy.request.ItemDTO;
 import com.exilum.demo.model.DTO.strategy.request.StrategyDTO;
-import com.exilum.demo.repository.ScarabRepository;
-import com.exilum.demo.repository.DeliriumOrbRepository;
-import com.exilum.demo.repository.CraftingMaterialRepository;
-import com.exilum.demo.repository.MapRepository;
-import com.exilum.demo.repository.DeviceCraftRepository;
-import com.exilum.demo.repository.StrategyRepository;
-import com.exilum.demo.service.fetching.CraftingMaterialFetchingService;
-import com.exilum.demo.service.fetching.DeliriumOrbFetchingService;
-import com.exilum.demo.service.fetching.ScarabFetchingService;
-import com.exilum.demo.service.fetching.MapFetchingService;
-import com.exilum.demo.service.fetching.DeviceCraftFetchingService;
+import com.exilum.demo.model.DTO.strategy.response.ItemSummaryDTO;
+import com.exilum.demo.model.DTO.strategy.response.StrategySummaryDTO;
+import com.exilum.demo.repository.*;
+import com.exilum.demo.service.fetching.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class StrategyService {
@@ -36,16 +32,20 @@ public class StrategyService {
     private StrategyRepository strategyRepository;
 
     @Transactional
-    public double processStrategy(StrategyDTO strategyDTO) {
-        double totalPrice = 0;
-
+    public StrategySummaryDTO processStrategy(StrategyDTO strategyDTO) {
         Strategy strategy = new Strategy();
         strategyRepository.save(strategy);
+
+        List<ItemSummaryDTO> scarabs = new ArrayList<>();
+        List<ItemSummaryDTO> deliriumOrbs = new ArrayList<>();
+        List<ItemSummaryDTO> mapDeviceCrafts = new ArrayList<>();
+        List<ItemSummaryDTO> maps = new ArrayList<>();
+        List<ItemSummaryDTO> craftingMaterials = new ArrayList<>();
 
         // Process Scarabs
         for (ItemDTO item : strategyDTO.getScarabs()) {
             double price = scarabFetchingService.findPriceByName(item.getName());
-            totalPrice += price * item.getQuantity();
+            scarabs.add(new ItemSummaryDTO(item.getName(), item.getQuantity(), price));
             Scarab scarab = scarabFetchingService.findByName(item.getName());
             strategy.addScarab(scarab, item.getQuantity());
         }
@@ -53,7 +53,7 @@ public class StrategyService {
         // Process Delirium Orbs
         for (ItemDTO item : strategyDTO.getDeliriumOrbs()) {
             double price = deliriumOrbFetchingService.findPriceByName(item.getName());
-            totalPrice += price * item.getQuantity();
+            deliriumOrbs.add(new ItemSummaryDTO(item.getName(), item.getQuantity(), price));
             DeliriumOrb deliriumOrb = deliriumOrbFetchingService.findByName(item.getName());
             strategy.addDeliriumOrb(deliriumOrb, item.getQuantity());
         }
@@ -61,7 +61,7 @@ public class StrategyService {
         // Process Map Device Crafts
         for (ItemDTO item : strategyDTO.getMapDeviceCraft()) {
             double price = deviceCraftFetchingService.findPriceByName(item.getName());
-            totalPrice += price * item.getQuantity();
+            mapDeviceCrafts.add(new ItemSummaryDTO(item.getName(), item.getQuantity(), price));
             DeviceCraft deviceCraft = deviceCraftFetchingService.findByName(item.getName());
             strategy.addDeviceCraft(deviceCraft, item.getQuantity());
         }
@@ -69,7 +69,7 @@ public class StrategyService {
         // Process Maps
         for (ItemDTO item : strategyDTO.getMaps()) {
             double price = mapFetchingService.findPriceByName(item.getName());
-            totalPrice += price * item.getQuantity();
+            maps.add(new ItemSummaryDTO(item.getName(), item.getQuantity(), price));
             Map map = mapFetchingService.findByName(item.getName());
             strategy.addMap(map, item.getQuantity());
         }
@@ -77,12 +77,13 @@ public class StrategyService {
         // Process Crafting Materials
         for (ItemDTO item : strategyDTO.getCraftingMaterials()) {
             double price = craftingMaterialFetchingService.findPriceByName(item.getName());
-            totalPrice += price * item.getQuantity();
+            craftingMaterials.add(new ItemSummaryDTO(item.getName(), item.getQuantity(), price));
             CraftingMaterial craftingMaterial = craftingMaterialFetchingService.findByName(item.getName());
             strategy.addCraftingMaterial(craftingMaterial, item.getQuantity());
         }
 
         strategyRepository.save(strategy);
-        return totalPrice;
+
+        return new StrategySummaryDTO(scarabs, deliriumOrbs, mapDeviceCrafts, maps, craftingMaterials);
     }
 }
