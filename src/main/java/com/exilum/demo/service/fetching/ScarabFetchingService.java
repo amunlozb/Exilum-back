@@ -81,4 +81,8 @@ public class ScarabFetchingService {
         return 0d;
     }
 
+    public Scarab findByName(String name) {
+        return(scarabRepository.findByName(name));
+    }
+
 }

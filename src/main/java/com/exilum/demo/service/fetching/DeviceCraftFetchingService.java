@@ -3,6 +3,7 @@ package com.exilum.demo.service.fetching;
 import com.exilum.demo.model.DeliriumOrb;
 import com.exilum.demo.model.DeviceCraft;
 import com.exilum.demo.model.Map;
+import com.exilum.demo.model.Scarab;
 import com.exilum.demo.repository.DeviceCraftRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,5 +25,9 @@ public class DeviceCraftFetchingService {
             return found.getPrice();
         }
         return 0d;
+    }
+
+    public DeviceCraft findByName(String name) {
+        return(deviceCraftRepository.findByName(name));
     }
 }

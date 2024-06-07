@@ -4,6 +4,7 @@ import com.exilum.demo.model.DTO.DeliriumOrbDTO;
 import com.exilum.demo.model.DTO.MapDTO;
 import com.exilum.demo.model.DeliriumOrb;
 import com.exilum.demo.model.Map;
+import com.exilum.demo.model.Scarab;
 import com.exilum.demo.model.Tier;
 import com.exilum.demo.repository.MapRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -132,5 +133,9 @@ public class MapFetchingService {
             return found.getPrice();
         }
         return 0d;
+    }
+
+    public Map findByName(String name) {
+        return(mapRepository.findByName(name).get(0));
     }
 }

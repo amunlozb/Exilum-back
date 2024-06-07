@@ -3,6 +3,7 @@ package com.exilum.demo.service.fetching;
 import com.exilum.demo.model.CraftingMaterial;
 import com.exilum.demo.model.DTO.CraftingMaterialDTO;
 import com.exilum.demo.model.DTO.DeliriumOrbDTO;
+import com.exilum.demo.model.Scarab;
 import com.exilum.demo.repository.CraftingMaterialRepository;
 import com.exilum.demo.repository.DeliriumOrbRepository;
 import org.springframework.stereotype.Service;
@@ -84,6 +85,10 @@ public class CraftingMaterialFetchingService {
             return found.getPrice();
         }
         return 0d;
+    }
+
+    public CraftingMaterial findByName(String name) {
+        return(craftingMaterialRepository.findByName(name));
     }
 }
 

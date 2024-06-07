@@ -3,6 +3,7 @@ package com.exilum.demo.service.fetching;
 import com.exilum.demo.model.CraftingMaterial;
 import com.exilum.demo.model.DeliriumOrb;
 import com.exilum.demo.model.DTO.DeliriumOrbDTO;
+import com.exilum.demo.model.Scarab;
 import com.exilum.demo.repository.DeliriumOrbRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -74,4 +75,7 @@ public class DeliriumOrbFetchingService {
         return 0d;
     }
 
+    public DeliriumOrb findByName(String name) {
+        return(deliriumOrbRepository.findByName(name));
+    }
 }
