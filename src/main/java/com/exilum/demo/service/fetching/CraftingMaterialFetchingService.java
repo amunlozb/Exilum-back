@@ -2,8 +2,6 @@ package com.exilum.demo.service.fetching;
 
 import com.exilum.demo.model.CraftingMaterial;
 import com.exilum.demo.model.DTO.CraftingMaterialDTO;
-import com.exilum.demo.model.DTO.DeliriumOrbDTO;
-import com.exilum.demo.model.Scarab;
 import com.exilum.demo.repository.CraftingMaterialRepository;
 import com.exilum.demo.repository.DeliriumOrbRepository;
 import org.springframework.stereotype.Service;
@@ -11,26 +9,20 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class CraftingMaterialFetchingService {
-    private final DeliriumOrbRepository deliriumOrbRepository;
-    private final CraftingMaterialRepository craftingMaterialRepository;
+    private CraftingMaterialRepository craftingMaterialRepository;
     // poe.watch documentation: https://docs.poe.watch/#categories
     String uri = "https://api.poe.watch/get?category=currency&league=Necropolis";
     RestTemplate restTemplate = new RestTemplate();
-
-    public CraftingMaterialFetchingService(DeliriumOrbRepository deliriumOrbRepository, CraftingMaterialRepository craftingMaterialRepository) {
-        this.deliriumOrbRepository = deliriumOrbRepository;
-        this.craftingMaterialRepository = craftingMaterialRepository;
-    }
 
     public CraftingMaterialDTO[] fetchCraftingMaterials() {
         List<String> materials = Arrays.asList("Cartographer's Chisel", "Orb of Alchemy", "Vaal Orb", "Orb of Scouring");
         // Get result with all currency types
         CraftingMaterialDTO[] result = restTemplate.getForObject(uri, CraftingMaterialDTO[].class);
 
+        assert result != null;
         // Filter result to only include chisels, alchemy orbs, vaal orbs, scouring orbs
         return Arrays.stream(result)
                 .filter(c -> materials.contains(c.getName()))

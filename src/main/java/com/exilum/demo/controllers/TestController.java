@@ -1,7 +1,5 @@
 package com.exilum.demo.controllers;
 
-import com.exilum.demo.model.Map;
-import com.exilum.demo.model.Tier;
 import com.exilum.demo.service.fetching.CraftingMaterialFetchingService;
 import com.exilum.demo.service.fetching.DeliriumOrbFetchingService;
 import com.exilum.demo.service.fetching.MapFetchingService;
@@ -13,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/test")

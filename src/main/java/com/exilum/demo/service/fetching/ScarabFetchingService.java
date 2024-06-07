@@ -1,7 +1,6 @@
 package com.exilum.demo.service.fetching;
 
 import com.exilum.demo.model.DTO.ScarabDTO;
-import com.exilum.demo.model.Map;
 import com.exilum.demo.model.Scarab;
 import com.exilum.demo.repository.ScarabRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +22,8 @@ public class ScarabFetchingService {
     private ScarabRepository scarabRepository;
 
     public ScarabDTO[] fetchScarabs() {
-        ScarabDTO[] result = restTemplate.getForObject(uri, ScarabDTO[].class);
 
-        return result;
+        return restTemplate.getForObject(uri, ScarabDTO[].class);
     }
 
     public String fetchAndSaveScarabs() {
