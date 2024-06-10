@@ -63,7 +63,7 @@ public class StrategyService {
         for (ItemDTO item : strategyDTO.getMapDeviceCraft()) {
             double price = deviceCraftFetchingService.findPriceByName(item.getName());
             // No icon URL for Device Crafts
-            mapDeviceCrafts.add(new ItemSummaryDTO(item.getName(), item.getQuantity(), price, null));
+            mapDeviceCrafts.add(new ItemSummaryDTO(item.getName(), item.getQuantity(), price, "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQmVzdGlhcnlPcmJGdWxsIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/3214b44360/BestiaryOrbFull.png"));
             DeviceCraft deviceCraft = deviceCraftFetchingService.findByName(item.getName());
             strategy.addDeviceCraft(deviceCraft, item.getQuantity());
         }
