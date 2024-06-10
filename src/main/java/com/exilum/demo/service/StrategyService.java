@@ -27,7 +27,6 @@ public class StrategyService {
     private MapFetchingService mapFetchingService;
     @Autowired
     private DeviceCraftFetchingService deviceCraftFetchingService;
-
     @Autowired
     private StrategyRepository strategyRepository;
 

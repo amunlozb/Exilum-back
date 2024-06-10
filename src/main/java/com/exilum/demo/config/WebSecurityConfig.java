@@ -32,6 +32,7 @@
                             .requestMatchers("/api/auth/**").permitAll()
                             // Web Endpoints
                             .requestMatchers("/api/**").permitAll()
+                            .requestMatchers("/api/strategy/**").permitAll()
                             .anyRequest().authenticated()
                     )
                     .oauth2ResourceServer(oauth2 -> oauth2.jwt(jwtConfigurer -> jwtConfigurer

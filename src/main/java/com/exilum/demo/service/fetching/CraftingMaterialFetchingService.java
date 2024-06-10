@@ -4,6 +4,7 @@ import com.exilum.demo.model.CraftingMaterial;
 import com.exilum.demo.model.DTO.CraftingMaterialDTO;
 import com.exilum.demo.repository.CraftingMaterialRepository;
 import com.exilum.demo.repository.DeliriumOrbRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -12,6 +13,7 @@ import java.util.List;
 
 @Service
 public class CraftingMaterialFetchingService {
+    @Autowired
     private CraftingMaterialRepository craftingMaterialRepository;
     // poe.watch documentation: https://docs.poe.watch/#categories
     String uri = "https://api.poe.watch/get?category=currency&league=Necropolis";
