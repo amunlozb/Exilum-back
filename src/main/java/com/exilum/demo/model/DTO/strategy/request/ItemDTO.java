@@ -12,4 +12,5 @@ import lombok.Setter;
 public class ItemDTO {
     private String name;
     private int quantity;
+    private String icon_url;
 }

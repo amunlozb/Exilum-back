@@ -44,7 +44,8 @@ public class StrategyService {
         // Process Scarabs
         for (ItemDTO item : strategyDTO.getScarabs()) {
             double price = scarabFetchingService.findPriceByName(item.getName());
-            scarabs.add(new ItemSummaryDTO(item.getName(), item.getQuantity(), price));
+            String iconUrl = item.getIcon_url(); // Get the icon URL
+            scarabs.add(new ItemSummaryDTO(item.getName(), item.getQuantity(), price, iconUrl));
             Scarab scarab = scarabFetchingService.findByName(item.getName());
             strategy.addScarab(scarab, item.getQuantity());
         }
@@ -52,7 +53,8 @@ public class StrategyService {
         // Process Delirium Orbs
         for (ItemDTO item : strategyDTO.getDeliriumOrbs()) {
             double price = deliriumOrbFetchingService.findPriceByName(item.getName());
-            deliriumOrbs.add(new ItemSummaryDTO(item.getName(), item.getQuantity(), price));
+            String iconUrl = item.getIcon_url(); // Get the icon URL
+            deliriumOrbs.add(new ItemSummaryDTO(item.getName(), item.getQuantity(), price, iconUrl));
             DeliriumOrb deliriumOrb = deliriumOrbFetchingService.findByName(item.getName());
             strategy.addDeliriumOrb(deliriumOrb, item.getQuantity());
         }
@@ -60,7 +62,8 @@ public class StrategyService {
         // Process Map Device Crafts
         for (ItemDTO item : strategyDTO.getMapDeviceCraft()) {
             double price = deviceCraftFetchingService.findPriceByName(item.getName());
-            mapDeviceCrafts.add(new ItemSummaryDTO(item.getName(), item.getQuantity(), price));
+            // No icon URL for Device Crafts
+            mapDeviceCrafts.add(new ItemSummaryDTO(item.getName(), item.getQuantity(), price, null));
             DeviceCraft deviceCraft = deviceCraftFetchingService.findByName(item.getName());
             strategy.addDeviceCraft(deviceCraft, item.getQuantity());
         }
@@ -68,7 +71,8 @@ public class StrategyService {
         // Process Maps
         for (ItemDTO item : strategyDTO.getMaps()) {
             double price = mapFetchingService.findPriceByName(item.getName());
-            maps.add(new ItemSummaryDTO(item.getName(), item.getQuantity(), price));
+            String iconUrl = item.getIcon_url(); // Get the icon URL
+            maps.add(new ItemSummaryDTO(item.getName(), item.getQuantity(), price, iconUrl));
             Map map = mapFetchingService.findByName(item.getName());
             strategy.addMap(map, item.getQuantity());
         }
@@ -76,7 +80,8 @@ public class StrategyService {
         // Process Crafting Materials
         for (ItemDTO item : strategyDTO.getCraftingMaterials()) {
             double price = craftingMaterialFetchingService.findPriceByName(item.getName());
-            craftingMaterials.add(new ItemSummaryDTO(item.getName(), item.getQuantity(), price));
+            String iconUrl = item.getIcon_url(); // Get the icon URL
+            craftingMaterials.add(new ItemSummaryDTO(item.getName(), item.getQuantity(), price, iconUrl));
             CraftingMaterial craftingMaterial = craftingMaterialFetchingService.findByName(item.getName());
             strategy.addCraftingMaterial(craftingMaterial, item.getQuantity());
         }

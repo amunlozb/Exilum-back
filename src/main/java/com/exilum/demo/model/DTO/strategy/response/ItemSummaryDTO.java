@@ -9,10 +9,12 @@ public class ItemSummaryDTO {
     private String name;
     private int quantity;
     private double price;
+    private String icon_url;
 
-    public ItemSummaryDTO(String name, int quantity, double price) {
+    public ItemSummaryDTO(String name, int quantity, double price, String icon_url) {
         this.name = name;
         this.quantity = quantity;
         this.price = price;
+        this.icon_url = icon_url;
     }
 }
