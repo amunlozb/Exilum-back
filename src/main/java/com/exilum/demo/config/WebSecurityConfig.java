@@ -4,6 +4,7 @@
     import org.springframework.context.annotation.Configuration;
     import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
     import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+    import org.springframework.security.config.annotation.web.configurers.CsrfConfigurer;
     import org.springframework.security.core.GrantedAuthority;
     import org.springframework.security.core.authority.SimpleGrantedAuthority;
     import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
@@ -22,8 +23,8 @@
         @Bean
         public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
             http
-                    .csrf().disable()
-                    .authorizeRequests(authorize -> authorize
+                    .csrf(CsrfConfigurer::disable)
+                    .authorizeHttpRequests(authorize -> authorize
                             // Test Endpoints
                             .requestMatchers("/api/test/public").permitAll()
                             .requestMatchers("/api/test/authenticated").authenticated()
