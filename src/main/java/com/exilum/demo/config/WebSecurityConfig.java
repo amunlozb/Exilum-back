@@ -9,12 +9,9 @@
     import org.springframework.security.core.authority.SimpleGrantedAuthority;
     import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
     import org.springframework.security.web.SecurityFilterChain;
-    import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
     import java.util.ArrayList;
     import java.util.List;
-    import java.util.Optional;
-    import java.util.stream.Collectors;
 
     @Configuration
     @EnableMethodSecurity(securedEnabled = true)
