@@ -3,7 +3,7 @@ package com.exilum.demo.model.DTO;
 import lombok.Getter;
 
 @Getter
-public class DeliriumOrbDTO {
+public class DeviceCraftDTO {
     private Integer id;
     private String name;
     private Double mean;
@@ -11,7 +11,7 @@ public class DeliriumOrbDTO {
 
     @Override
     public String toString() {
-        return "DeliriumOrbDTO{" +
+        return "DeviceCraftDTO{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", mean=" + mean +

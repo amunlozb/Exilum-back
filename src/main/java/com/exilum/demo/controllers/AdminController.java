@@ -6,6 +6,7 @@ import com.exilum.demo.model.DTO.DeliriumOrbDTO;
 import com.exilum.demo.model.DTO.MapDTO;
 import com.exilum.demo.model.DTO.ScarabDTO;
 import com.exilum.demo.model.Scarab;
+import com.exilum.demo.repository.CraftingMaterialRepository;
 import com.exilum.demo.security.Permission;
 import com.exilum.demo.security.Role;
 import com.exilum.demo.service.fetching.CraftingMaterialFetchingService;
@@ -17,6 +18,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -40,36 +42,46 @@ public class AdminController {
     DeliriumOrbFetchingService deliriumOrbFetchingService;
     @Autowired
     CraftingMaterialFetchingService craftingMaterialFetchingService;
+    @Autowired
+    private UserManagementService userManagementService;
 
     // TODO: check if actually needed
     Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-
-    private final UserManagementService userManagementService;
-
-    // TODO: add return msg
-    @PostMapping(path = "/roles/{uid}")
-    public String setRolesUserClaims(
-            @PathVariable String uid,
-            @RequestBody Role requestedRole
-    ) throws FirebaseAuthException {
-        try {
-            if (requestedRole == null) {
-                // Handle case where requestedRole is null
-                return "Requested role is null";
-            }
-
-            return(userManagementService.setRolesNew(uid, requestedRole));
-        } catch (FirebaseAuthException e) {
-            return e.getMessage();
-        }
-
+    @PreAuthorize("hasRole('ADMIN')")
+    @PostMapping("/checkAdmin")
+    public ResponseEntity<?> checkAdmin() {
+        return ResponseEntity.ok("Admin Verified Successfully");
     }
 
-    @GetMapping("/authorities")
-    public Collection<? extends GrantedAuthority> getUserAuthorities(Authentication authentication) {
-        // Get the authorities associated with the authenticated user
-        return authentication.getAuthorities();
+    @PostMapping("/grantAdminRole/{uid}")
+    public ResponseEntity<?> grantAdminRole(@PathVariable String uid) {
+        try {
+            String customToken = userManagementService.grantAdminRole(uid);
+            return ResponseEntity.ok(customToken);
+        } catch (FirebaseAuthException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
+    }
+
+    @PostMapping("/grantAdminByEmail")
+    public ResponseEntity<?> grantAdminRoleByEmail(@RequestParam String email) {
+        try {
+            String customToken = userManagementService.grantAdminRoleByEmail(email);
+            return ResponseEntity.ok(customToken);
+        } catch (FirebaseAuthException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
+    }
+
+    @PostMapping("/revokeAdminByEmail")
+    public ResponseEntity<?> revokeAdminRoleByEmail(@RequestParam String email) {
+        try {
+            String customToken = userManagementService.revokeAdminRoleByEmail(email);
+            return ResponseEntity.ok(customToken);
+        } catch (FirebaseAuthException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
     }
 
     @GetMapping("/testScarabs")
@@ -140,6 +152,16 @@ public class AdminController {
         return result;
     }
 
+    @GetMapping("/saveCraftingMaterials")
+    public ResponseEntity<String> saveCraftingMaterials() {
+        String msg = craftingMaterialFetchingService.fetchAndSaveCraftingMaterials();
+        return ResponseEntity.ok(msg);
+    }
 
+    @GetMapping("/updateCraftingMaterials")
+    public ResponseEntity<String> updateCraftingMaterials() {
+        String msg = craftingMaterialFetchingService.updatePricesCraftingMaterials();
+        return ResponseEntity.ok(msg);
+    }
 
 }

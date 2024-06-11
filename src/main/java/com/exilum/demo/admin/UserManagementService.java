@@ -8,13 +8,13 @@ import com.google.firebase.auth.FirebaseToken;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
-// This service should be callable from a REST endpoint so that administrators are able to grant or deny users permissions.
 public class UserManagementService {
 
     public String setRoleUserClaims(String uid, List<Role> requestedRoles) throws FirebaseAuthException {
@@ -36,7 +36,7 @@ public class UserManagementService {
         try {
             FirebaseAuth.getInstance().setCustomUserClaims(uid, claims);
             System.out.println(generateCustomToken(uid));
-            return generateCustomToken(uid); // Generate and return a new custom token
+            return generateCustomToken(uid);
         } catch (FirebaseAuthException e) {
             return e.getMessage();
         }
@@ -45,15 +45,24 @@ public class UserManagementService {
     private String generateCustomToken(String uid) throws FirebaseAuthException {
         return FirebaseAuth.getInstance().createCustomToken(uid);
     }
+    
+    public String grantAdminRole(String uid) throws FirebaseAuthException {
+        List<Role> roles = Collections.singletonList(Role.ADMIN);
+        return setRoleUserClaims(uid, roles);
+    }
 
+    public String grantAdminRoleByEmail(String email) throws FirebaseAuthException {
+        // Get the user's UID based on their email
+        String uid = FirebaseAuth.getInstance().getUserByEmail(email).getUid();
 
-    public String setRolesNew(String uid, Role requestedRole) throws FirebaseAuthException {
-        Map<String, Object> additionalClaims = new HashMap<String, Object>();
+        List<Role> roles = Collections.singletonList(Role.ADMIN);
+        return setRoleUserClaims(uid, roles);
+    }
 
-        additionalClaims.put(requestedRole.name(), true);
+    public String revokeAdminRoleByEmail(String email) throws FirebaseAuthException {
+        // Get the user's UID based on their email
+        String uid = FirebaseAuth.getInstance().getUserByEmail(email).getUid();
 
-        String customToken = FirebaseAuth.getInstance().createCustomToken(uid, additionalClaims);
-        return customToken;
-
+        return setRoleUserClaims(uid, Collections.emptyList());
     }
 }

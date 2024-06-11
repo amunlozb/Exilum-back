@@ -1,5 +1,6 @@
 package com.exilum.demo.controllers;
 
+import com.exilum.demo.admin.UserManagementService;
 import com.google.firebase.auth.*;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -33,6 +35,9 @@ import java.util.concurrent.TimeUnit;
 public class AuthController {
     @Autowired
     private FirebaseAuth firebaseAuth;
+
+    @Autowired
+    private UserManagementService userManagementService;
 
     @PostMapping("/signup")
     public ResponseEntity<?> createUser(@RequestBody SignupRequest request) {
@@ -65,7 +70,7 @@ public class AuthController {
                 List<String> userRoles = (List<String>) claims.get("custom_claims");
                 return ResponseEntity.ok().body(userRoles);
             } else {
-                return ResponseEntity.ok().body("User has no roles");
+                return ResponseEntity.ok().body(Collections.singletonList("USER"));
             }
         } catch (FirebaseAuthException e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Unauthorized");
@@ -86,5 +91,15 @@ public class AuthController {
     @GetMapping("/test")
     public String sayHello() {
         return "this works";
+    }
+
+    @PostMapping("/grantAdmin/{uid}")
+    public ResponseEntity<?> grantAdminRole(@PathVariable String uid) {
+        try {
+            String customToken = userManagementService.grantAdminRole(uid);
+            return ResponseEntity.ok(customToken);
+        } catch (FirebaseAuthException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
     }
 }

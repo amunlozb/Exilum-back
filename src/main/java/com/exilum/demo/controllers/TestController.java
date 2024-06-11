@@ -1,7 +1,6 @@
 package com.exilum.demo.controllers;
 
-import com.exilum.demo.model.Map;
-import com.exilum.demo.model.Tier;
+import com.exilum.demo.service.fetching.CraftingMaterialFetchingService;
 import com.exilum.demo.service.fetching.DeliriumOrbFetchingService;
 import com.exilum.demo.service.fetching.MapFetchingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/test")
@@ -21,6 +19,8 @@ public class TestController {
     MapFetchingService mapFetchingService;
     @Autowired
     DeliriumOrbFetchingService deliriumOrbFetchingService;
+    @Autowired
+    CraftingMaterialFetchingService craftingMaterialFetchingService;
 
     @GetMapping("/public")
     public ResponseEntity<String> publicEndpoint() {
@@ -41,20 +41,10 @@ public class TestController {
         return ResponseEntity.ok().body(message);
     }
 
-    @GetMapping("getMapsByTierTest")
-    public ResponseEntity<Object> getMapsByTierTest(@RequestParam Tier inputTier) {
-        String selectedTier = inputTier.name();
-        List<Map> maps = mapFetchingService.findByTier(selectedTier);
-        return ResponseEntity.ok(maps);
+    @GetMapping(path = "/getPriceByNameCraftingMaterial")
+    public ResponseEntity<Double> getPriceByNameCraftingMaterial(@RequestParam String inputName) {
+
+        return ResponseEntity.ok(craftingMaterialFetchingService.findPriceByName(inputName));
     }
 
-    @GetMapping("getBlightedMaps")
-    public ResponseEntity<Object> getBlightedMaps() {
-        return ResponseEntity.ok(mapFetchingService.getBlightedMaps());
-    }
-
-    @GetMapping("getDeliriumOrbsTest")
-    public ResponseEntity<Object> getDeliriumOrbsTest() {
-        return ResponseEntity.ok(deliriumOrbFetchingService.fetchDeliriumOrbs());
-    }
 }

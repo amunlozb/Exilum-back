@@ -45,7 +45,7 @@ public class FirebaseAuthenticationToken extends AbstractAuthenticationToken {
                     authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
                 }
             } else {
-                // For other claims, create authorities based on claim name
+                // For other claims, create authorities based on claim name (eg: USER claim will grant ROLE_USER authority)
                 authorities.add(new SimpleGrantedAuthority("ROLE_" + claimName.toUpperCase()));
             }
         });

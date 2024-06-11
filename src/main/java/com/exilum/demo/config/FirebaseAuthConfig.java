@@ -17,17 +17,17 @@ import java.nio.charset.StandardCharsets;
 @Configuration
 public class FirebaseAuthConfig {
 
-    @Value("${SERVICE_ACCOUNT}")
-    private String serviceAccountEnv;
+    private String serviceAccountBase64 = System.getenv("SERVICE_ACCOUNT");
 
     @Bean
     FirebaseAuth firebaseAuth() throws IOException {
-        // Decode the base64 encoded service account JSON
-        byte[] serviceAccountBytes = Base64.getDecoder().decode(serviceAccountEnv);
+        // Decode the base64 encoded service account JSON (env var)
+        byte[] serviceAccountBytes = Base64.getDecoder().decode(serviceAccountBase64);
+        String serviceAccountJson = new String(serviceAccountBytes, StandardCharsets.UTF_8);
 
         // Set options = Read credentials from the decoded JSON
         var options = FirebaseOptions.builder()
-                .setCredentials(GoogleCredentials.fromStream(new ByteArrayInputStream(serviceAccountBytes)))
+                .setCredentials(GoogleCredentials.fromStream(new ByteArrayInputStream(serviceAccountJson.getBytes())))
                 .build();
 
         // Initialize app with the options
