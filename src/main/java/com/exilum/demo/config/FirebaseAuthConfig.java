@@ -21,7 +21,7 @@ public class FirebaseAuthConfig {
 
     @Bean
     FirebaseAuth firebaseAuth() throws IOException {
-        // Decode the base64 encoded service account JSON
+        // Decode the base64 encoded service account JSON (env var)
         byte[] serviceAccountBytes = Base64.getDecoder().decode(serviceAccountBase64);
         String serviceAccountJson = new String(serviceAccountBytes, StandardCharsets.UTF_8);
 

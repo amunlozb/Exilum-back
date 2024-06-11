@@ -1,0 +1,1016 @@
+{
+	"info": {
+		"_postman_id": "eab13eac-f7b0-4f31-bc03-fe7602ec2943",
+		"name": "Exilum",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34143222"
+	},
+	"item": [
+		{
+			"name": "Tests",
+			"item": [
+				{
+					"name": "Roles Access",
+					"item": [
+						{
+							"name": "Public Endpoint Test",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjMzMDUxMThiZTBmNTZkYzA4NGE0NmExN2RiNzU1NjVkNzY4YmE2ZmUiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiV29vcCBEZSBkb29wIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FDZzhvY0xFMEtMTko5QzNzRkVMQkQ1N0FfRHVYNGZ5WmFTZjZZNW9xd1ZCUHRIOFdrdnJHQT1zOTYtYyIsImN1c3RvbV9jbGFpbXMiOlsiQURNSU4iXSwiaXNzIjoiaHR0cHM6Ly9zZWN1cmV0b2tlbi5nb29nbGUuY29tL2V4aWx1bS0yYjdkNCIsImF1ZCI6ImV4aWx1bS0yYjdkNCIsImF1dGhfdGltZSI6MTcxNzU4MjEwOSwidXNlcl9pZCI6Ik0xMnBxeG9vTUtmWEFtYVU3VU8zMk00NlVPWDIiLCJzdWIiOiJNMTJwcXhvb01LZlhBbWFVN1VPMzJNNDZVT1gyIiwiaWF0IjoxNzE3NTgyMTA5LCJleHAiOjE3MTc1ODU3MDksImVtYWlsIjoiYW1sMjcxMTEzQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7Imdvb2dsZS5jb20iOlsiMTE1NDMwNDI2ODY1NDkzODI1NjQxIl0sImVtYWlsIjpbImFtbDI3MTExM0BnbWFpbC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.VW2rot2BmMwwViYskWkrFK5YnUxOOuTQX9-6HGWuRTGtwTRpH4e9lcH3FjH8vKfmKWF3fbNr-X3vRxy5TuKE7MmQBoCjszhh3wo2Gcb-spoazUoxIKykty3vOv1cbska6ygTZyEy39Y2xwkUGOi6IkUxOHYpbE8VDqFbDzPKx3BoAuDXg7hgph6ZvFgQwPgjIw-FxRvMMLR2yXgqFpF47vE39iQTU0LHNjp8HxnEsrGSp3ug-A-_fnP4gPVwEounzHCnYME3YaQcp7vNF3E5x6v3FRLJdD6zD_9US6EoTOph4rS7YAXayi-mgg0u2yD2FZeEl0RL1AHNSP9aOVnteQ",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{TEST_ROOT}}/public",
+									"host": [
+										"{{TEST_ROOT}}"
+									],
+									"path": [
+										"public"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Authenticated Endpoint Test",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjMzMDUxMThiZTBmNTZkYzA4NGE0NmExN2RiNzU1NjVkNzY4YmE2ZmUiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiV29vcCBEZSBkb29wIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FDZzhvY0xFMEtMTko5QzNzRkVMQkQ1N0FfRHVYNGZ5WmFTZjZZNW9xd1ZCUHRIOFdrdnJHQT1zOTYtYyIsImN1c3RvbV9jbGFpbXMiOlsiQURNSU4iXSwiaXNzIjoiaHR0cHM6Ly9zZWN1cmV0b2tlbi5nb29nbGUuY29tL2V4aWx1bS0yYjdkNCIsImF1ZCI6ImV4aWx1bS0yYjdkNCIsImF1dGhfdGltZSI6MTcxNzU4NDQzOCwidXNlcl9pZCI6Ik0xMnBxeG9vTUtmWEFtYVU3VU8zMk00NlVPWDIiLCJzdWIiOiJNMTJwcXhvb01LZlhBbWFVN1VPMzJNNDZVT1gyIiwiaWF0IjoxNzE3NTg0NDM4LCJleHAiOjE3MTc1ODgwMzgsImVtYWlsIjoiYW1sMjcxMTEzQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7Imdvb2dsZS5jb20iOlsiMTE1NDMwNDI2ODY1NDkzODI1NjQxIl0sImVtYWlsIjpbImFtbDI3MTExM0BnbWFpbC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.miyyMkmdriwdoovTHBpKVYBe2_QQdVLxmfjANEEI2z0YTRHxVlX00zbKIg2JP-rVGtKOvR82_7ZUSJJuCMumqjz8ZKlQx3lJbQFktVdZSHSUv3Toz2IvuI9HayrJFj7z5fyX3fEDZJBMgexpCOlhwBkevFND0uuKxNuYOfeQ2Gp_IeB7vC7SuVgMg5MQ5wXNz1MRrwzD5fK_mHPJi_F2DGGvYphg3NKKRQAsFbeG7UE-hE4EMYlXm0pO-LIUYS7Qu9lF5pX2sPWW0NDpNdIvnERr0jVsXvPRDyqDQSXZ1Bjo6WcbcyCgSHHpwpK2rGEUY86njE840BIw5Sy65kxEvA",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{TEST_ROOT}}/authenticated",
+									"host": [
+										"{{TEST_ROOT}}"
+									],
+									"path": [
+										"authenticated"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Admin Endpoint Test",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjMzMDUxMThiZTBmNTZkYzA4NGE0NmExN2RiNzU1NjVkNzY4YmE2ZmUiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiV29vcCBEZSBkb29wIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FDZzhvY0xFMEtMTko5QzNzRkVMQkQ1N0FfRHVYNGZ5WmFTZjZZNW9xd1ZCUHRIOFdrdnJHQT1zOTYtYyIsImN1c3RvbV9jbGFpbXMiOlsiQURNSU4iXSwiaXNzIjoiaHR0cHM6Ly9zZWN1cmV0b2tlbi5nb29nbGUuY29tL2V4aWx1bS0yYjdkNCIsImF1ZCI6ImV4aWx1bS0yYjdkNCIsImF1dGhfdGltZSI6MTcxNzU4NDQzOCwidXNlcl9pZCI6Ik0xMnBxeG9vTUtmWEFtYVU3VU8zMk00NlVPWDIiLCJzdWIiOiJNMTJwcXhvb01LZlhBbWFVN1VPMzJNNDZVT1gyIiwiaWF0IjoxNzE3NTg0NDM4LCJleHAiOjE3MTc1ODgwMzgsImVtYWlsIjoiYW1sMjcxMTEzQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7Imdvb2dsZS5jb20iOlsiMTE1NDMwNDI2ODY1NDkzODI1NjQxIl0sImVtYWlsIjpbImFtbDI3MTExM0BnbWFpbC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.miyyMkmdriwdoovTHBpKVYBe2_QQdVLxmfjANEEI2z0YTRHxVlX00zbKIg2JP-rVGtKOvR82_7ZUSJJuCMumqjz8ZKlQx3lJbQFktVdZSHSUv3Toz2IvuI9HayrJFj7z5fyX3fEDZJBMgexpCOlhwBkevFND0uuKxNuYOfeQ2Gp_IeB7vC7SuVgMg5MQ5wXNz1MRrwzD5fK_mHPJi_F2DGGvYphg3NKKRQAsFbeG7UE-hE4EMYlXm0pO-LIUYS7Qu9lF5pX2sPWW0NDpNdIvnERr0jVsXvPRDyqDQSXZ1Bjo6WcbcyCgSHHpwpK2rGEUY86njE840BIw5Sy65kxEvA",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{TEST_ROOT}}/admin",
+									"host": [
+										"{{TEST_ROOT}}"
+									],
+									"path": [
+										"admin"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Check Prices",
+					"item": [
+						{
+							"name": "Get Price by Name",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjMzMDUxMThiZTBmNTZkYzA4NGE0NmExN2RiNzU1NjVkNzY4YmE2ZmUiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiV2Fpa28gKFdhaWtvKSIsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQ2c4b2NMSmNHYTMtSnY0QnA1aGNSaXVzUDZBUk1yWFgxVG1qOGJ6QVVPX1hRSzlTRm1zR2E5bj1zOTYtYyIsImN1c3RvbV9jbGFpbXMiOlsiQURNSU4iXSwiaXNzIjoiaHR0cHM6Ly9zZWN1cmV0b2tlbi5nb29nbGUuY29tL2V4aWx1bS0yYjdkNCIsImF1ZCI6ImV4aWx1bS0yYjdkNCIsImF1dGhfdGltZSI6MTcxNzc0MjcyMiwidXNlcl9pZCI6InNkVUwwa0dKbW1OODVqY2VleEZ3bXdJRnFoQTIiLCJzdWIiOiJzZFVMMGtHSm1tTjg1amNlZXhGd213SUZxaEEyIiwiaWF0IjoxNzE3NzQyNzIyLCJleHAiOjE3MTc3NDYzMjIsImVtYWlsIjoiYW1sMjAwMjc1QGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7Imdvb2dsZS5jb20iOlsiMTAyNDY2ODkyMjM5MjgyODY1MDM2Il0sImVtYWlsIjpbImFtbDIwMDI3NUBnbWFpbC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.mVZmDDDi2gbr0bT0AetQifbemutUP5flKmzDUfGeKTxeIYIGhiPBcEZ3bnQnhvjJaaiqqwR8YLx8p7Yx1PChugX9QYVFS-hBjIqJIyPDvU8pynccaPjuLtyYWHn-o8AQ4ABv3t2PiOEWrUlJtkJ0_BTe4BnLUkztvnrqcjFQXy_kic_YmT3Nv0j6X163Z5ovANueo4FTGPUEcqrw4kSpoQegyyuBLqRzmmdCNwDIJ1FkgD38PuDZC_nF8RvIGpD7jvhcTZQjIXJazBiZs4xIk5CE_sn1ZJC8Ac7YgZPK4p69X6GaPlO-P0hT-osX_As1ILJFMxvRzOgu7L_zrFel7A",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{TEST_ROOT}}/getPriceByNameCraftingMaterial?inputName=Cartographer's Chisel",
+									"host": [
+										"{{TEST_ROOT}}"
+									],
+									"path": [
+										"getPriceByNameCraftingMaterial"
+									],
+									"query": [
+										{
+											"key": "inputName",
+											"value": "Cartographer's Chisel"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Get my name (uid)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImEyMzhkZDA0Y2JhYTU4MGIzMDRjODgxZTFjMDA4ZWMyOGZiYmFkZGMiLCJ0eXAiOiJKV1QifQ.eyJjdXN0b21fY2xhaW1zIjpbIlJFQUQiLCJXUklURSJdLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vZXhpbHVtLTJiN2Q0IiwiYXVkIjoiZXhpbHVtLTJiN2Q0IiwiYXV0aF90aW1lIjoxNzE0MjMxNzUwLCJ1c2VyX2lkIjoiN2xlMHkwdHZQRFFnNnVuZWVxM25qRFJYalVtMiIsInN1YiI6IjdsZTB5MHR2UERRZzZ1bmVlcTNuakRSWGpVbTIiLCJpYXQiOjE3MTQyMzE3NTAsImV4cCI6MTcxNDIzNTM1MCwiZW1haWwiOiJ1c2VyQHVzZXIuY29tIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7ImVtYWlsIjpbInVzZXJAdXNlci5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJwYXNzd29yZCJ9fQ.Um7Lxw7i6TGIgbMgqsW8HbXsOcPhaXJGCyDErOVjDhQDtZWpFHKsbd6LyYbBvAsRMjsr-CkLpxsxXztT8u55ZmHMIphVTvRarqFlGrTlHRMWLaMFPpILpjP8NHlNNIIC1AvuyRABVQOXdN9FAajkFZ5pYLbzAtNX3jXUcixLlBeO1Kv-4rJD1ZUUZu2UmD6OmQXz3dXy8jCoZkgeAe0KOYE6KDr_Ef4Nnsi8myFggrJTYKGPCu3_ZKDx6hoPV_AetH9tJ-1Y5vNGPQaUWxQsRjV8PngvpVe-3pRAbR_jjCo_iUJq6kbErOMUWjjgC6W7nomQ1B0GTRvGGn-e-PIv6w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/getName",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"getName"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Roles",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImEyMzhkZDA0Y2JhYTU4MGIzMDRjODgxZTFjMDA4ZWMyOGZiYmFkZGMiLCJ0eXAiOiJKV1QifQ.eyJjdXN0b21fY2xhaW1zIjpbIldSSVRFIl0sImlzcyI6Imh0dHBzOi8vc2VjdXJldG9rZW4uZ29vZ2xlLmNvbS9leGlsdW0tMmI3ZDQiLCJhdWQiOiJleGlsdW0tMmI3ZDQiLCJhdXRoX3RpbWUiOjE3MTQyMzIzNzQsInVzZXJfaWQiOiI3bGUweTB0dlBEUWc2dW5lZXEzbmpEUlhqVW0yIiwic3ViIjoiN2xlMHkwdHZQRFFnNnVuZWVxM25qRFJYalVtMiIsImlhdCI6MTcxNDIzMjM3NCwiZXhwIjoxNzE0MjM1OTc0LCJlbWFpbCI6InVzZXJAdXNlci5jb20iLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZW1haWwiOlsidXNlckB1c2VyLmNvbSJdfSwic2lnbl9pbl9wcm92aWRlciI6InBhc3N3b3JkIn19.ca8GKIbnu6bvxEp7bp_Zf86HHcIjc4kA1iKAYMSbDH5am-gGQTYCfSfcqOrVVLSIILWyFesq3vVoZRWkT7ivbMS6ETzJdzEFiFoinua8bEq_aFyCTcCWajeQOdCxtOAMN2z30iGIBCfzurXNnftE9XFL33SaJrJeP1tRr1Azc8xN9Tfarr0jHF4lNyDf0Dtmv4dZ3cujyOqgXBOLYPrIl9AtTEsXseStLbb9OqR-xors3TSWZLJ79AQI_M2MbQKzBybwwAw_ixj5rBuHVaQpmGAhXoMucQfMtCiuPMr42IUeK6g4ooEhNUF6fKOs-3f-0SZ1S75MErcbHfvzfc5sdg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/getAuthorities",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"getAuthorities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Check READ authority",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImEyMzhkZDA0Y2JhYTU4MGIzMDRjODgxZTFjMDA4ZWMyOGZiYmFkZGMiLCJ0eXAiOiJKV1QifQ.eyJjdXN0b21fY2xhaW1zIjpbIldSSVRFIl0sImlzcyI6Imh0dHBzOi8vc2VjdXJldG9rZW4uZ29vZ2xlLmNvbS9leGlsdW0tMmI3ZDQiLCJhdWQiOiJleGlsdW0tMmI3ZDQiLCJhdXRoX3RpbWUiOjE3MTQyMzIzNzQsInVzZXJfaWQiOiI3bGUweTB0dlBEUWc2dW5lZXEzbmpEUlhqVW0yIiwic3ViIjoiN2xlMHkwdHZQRFFnNnVuZWVxM25qRFJYalVtMiIsImlhdCI6MTcxNDIzMjM3NCwiZXhwIjoxNzE0MjM1OTc0LCJlbWFpbCI6InVzZXJAdXNlci5jb20iLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZW1haWwiOlsidXNlckB1c2VyLmNvbSJdfSwic2lnbl9pbl9wcm92aWRlciI6InBhc3N3b3JkIn19.ca8GKIbnu6bvxEp7bp_Zf86HHcIjc4kA1iKAYMSbDH5am-gGQTYCfSfcqOrVVLSIILWyFesq3vVoZRWkT7ivbMS6ETzJdzEFiFoinua8bEq_aFyCTcCWajeQOdCxtOAMN2z30iGIBCfzurXNnftE9XFL33SaJrJeP1tRr1Azc8xN9Tfarr0jHF4lNyDf0Dtmv4dZ3cujyOqgXBOLYPrIl9AtTEsXseStLbb9OqR-xors3TSWZLJ79AQI_M2MbQKzBybwwAw_ixj5rBuHVaQpmGAhXoMucQfMtCiuPMr42IUeK6g4ooEhNUF6fKOs-3f-0SZ1S75MErcbHfvzfc5sdg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/checkRead",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"checkRead"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Test Scarabs Request poe.watch",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Test Maps Request poe.watch",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{ADMIN_ROOT}}/testMaps",
+							"host": [
+								"{{ADMIN_ROOT}}"
+							],
+							"path": [
+								"testMaps"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Test Delirium Request",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{ADMIN_ROOT}}/testMaps",
+							"host": [
+								"{{ADMIN_ROOT}}"
+							],
+							"path": [
+								"testMaps"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Test Crafting Materials",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{ADMIN_ROOT}}/testCraftingMaterials",
+							"host": [
+								"{{ADMIN_ROOT}}"
+							],
+							"path": [
+								"testCraftingMaterials"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Auth Test",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{AUTH_ROOT}}/test",
+							"host": [
+								"{{AUTH_ROOT}}"
+							],
+							"path": [
+								"test"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Authorities",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6Ijc2MDI3MTI2ODJkZjk5Y2ZiODkxYWEwMzdkNzNiY2M2YTM5NzAwODQiLCJ0eXAiOiJKV1QifQ.eyJjdXN0b21fY2xhaW1zIjpbIkFETUlOIl0sImlzcyI6Imh0dHBzOi8vc2VjdXJldG9rZW4uZ29vZ2xlLmNvbS9leGlsdW0tMmI3ZDQiLCJhdWQiOiJleGlsdW0tMmI3ZDQiLCJhdXRoX3RpbWUiOjE3MTQ5MzEzMDksInVzZXJfaWQiOiJiQWJiWWx1WkplTm1ITXJUVG9HWEx2ZEtjVGoyIiwic3ViIjoiYkFiYllsdVpKZU5tSE1yVFRvR1hMdmRLY1RqMiIsImlhdCI6MTcxNDkzMTMwOSwiZXhwIjoxNzE0OTM0OTA5LCJlbWFpbCI6InRoaXNpc215dGVzdGVtYWlsQHRlc3QuY29tIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7ImVtYWlsIjpbInRoaXNpc215dGVzdGVtYWlsQHRlc3QuY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoicGFzc3dvcmQifX0.P7_TAgAFpbGd_RP9y9NKdUooMox7u7xRTG2yhZ7xEdOjT-Qkls1Wl-rcAYomdEK6SSdUhxCbdzZKhfx-9JSeAMJ2suVUcmkEsp3n9_SMr9GgIso2nM8n6p96fM4cDnZ4hLrUekUHxVRtPiFXydjn8gGpOzgXF0gMjteCQuj4h3tM1tngVD9DXu9cSh4CqSz8TmgFo2bszjAdMJqN8CNhEfBWax8n3LNiSHsEhvLJovN-3Or5PB96TVsupfLkPkrEmlF3tBqxjaGoXH4mIcLr3AmmrNH5K3Zht9Lrse_APRteGwhj9F6g5QkOrw7Fy-bEz5kybCzHMKvBSlqmCZFZAg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{ADMIN_ROOT}}/authorities",
+							"host": [
+								"{{ADMIN_ROOT}}"
+							],
+							"path": [
+								"authorities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get maps by tier",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/test/getMapsByTierTest?inputTier=T17",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"test",
+								"getMapsByTierTest"
+							],
+							"query": [
+								{
+									"key": "inputTier",
+									"value": "T17"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "Update Prices",
+					"item": [
+						{
+							"name": "Update Delirium Orb Prices",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{ADMIN_ROOT}}/updateDeliriumOrbs",
+									"host": [
+										"{{ADMIN_ROOT}}"
+									],
+									"path": [
+										"updateDeliriumOrbs"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Map Prices",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{ADMIN_ROOT}}/updateMaps",
+									"host": [
+										"{{ADMIN_ROOT}}"
+									],
+									"path": [
+										"updateMaps"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Scarab Prices",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{ADMIN_ROOT}}/updateScarabs",
+									"host": [
+										"{{ADMIN_ROOT}}"
+									],
+									"path": [
+										"updateScarabs"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Crafting Material Prices",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{ADMIN_ROOT}}/updateCraftingMaterials",
+									"host": [
+										"{{ADMIN_ROOT}}"
+									],
+									"path": [
+										"updateCraftingMaterials"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Save Data",
+					"item": [
+						{
+							"name": "Save Scarabs",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{ADMIN_ROOT}}/saveScarabs",
+									"host": [
+										"{{ADMIN_ROOT}}"
+									],
+									"path": [
+										"saveScarabs"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Save Maps",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{ADMIN_ROOT}}/saveMaps",
+									"host": [
+										"{{ADMIN_ROOT}}"
+									],
+									"path": [
+										"saveMaps"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Save Delirium Orbs",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{ADMIN_ROOT}}/saveDeliriumOrbs",
+									"host": [
+										"{{ADMIN_ROOT}}"
+									],
+									"path": [
+										"saveDeliriumOrbs"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Save Crafting Materials",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{ADMIN_ROOT}}/saveCraftingMaterials",
+									"host": [
+										"{{ADMIN_ROOT}}"
+									],
+									"path": [
+										"saveCraftingMaterials"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Roles",
+					"item": [
+						{
+							"name": "Using Email",
+							"item": [
+								{
+									"name": "Grant Admin Role",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{ADMIN_ROOT}}/grantAdminByEmail?email=aml271113@gmail.com",
+											"host": [
+												"{{ADMIN_ROOT}}"
+											],
+											"path": [
+												"grantAdminByEmail"
+											],
+											"query": [
+												{
+													"key": "email",
+													"value": "aml271113@gmail.com"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Revoke Admin Role",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjMzMDUxMThiZTBmNTZkYzA4NGE0NmExN2RiNzU1NjVkNzY4YmE2ZmUiLCJ0eXAiOiJKV1QifQ.eyJjdXN0b21fY2xhaW1zIjpbIkFETUlOIl0sImlzcyI6Imh0dHBzOi8vc2VjdXJldG9rZW4uZ29vZ2xlLmNvbS9leGlsdW0tMmI3ZDQiLCJhdWQiOiJleGlsdW0tMmI3ZDQiLCJhdXRoX3RpbWUiOjE3MTc2Njc0MzEsInVzZXJfaWQiOiJiQWJiWWx1WkplTm1ITXJUVG9HWEx2ZEtjVGoyIiwic3ViIjoiYkFiYllsdVpKZU5tSE1yVFRvR1hMdmRLY1RqMiIsImlhdCI6MTcxNzY2NzQzMSwiZXhwIjoxNzE3NjcxMDMxLCJlbWFpbCI6InRoaXNpc215dGVzdGVtYWlsQHRlc3QuY29tIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7ImVtYWlsIjpbInRoaXNpc215dGVzdGVtYWlsQHRlc3QuY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoicGFzc3dvcmQifX0.imZcqoae3ETJvVPchm9Cz3-sqXszXkicOZ5wlmWgE9pAjqe1drLUS5Ke04gyTCUGm0kgCnCDg7B2sDIxCT0DDCPx0UDgjQxdPs3cYcVFcXnnC9NcqBZqVC_QoqSLNskC6QVsnmftISeZmZ7HHd9vGuwx6xdSPfMUiBNCakVLHXLNWyUeBqlllyliLAH6JfHyXi_VAtf9fPDLvzG7prlIB1l8cRCMkl0UEzlmT608oJU8jz3TCJ0lLEIZ20QJcoUjG1Uu3xqOU0aUj0XdQFiE40ZX5FKgnKFQ63jvSpDfxGnqK0-UZW4VOH1V8VtSLF3KRUyw3c34UODkhs0LfoMHvQ",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{ADMIN_ROOT}}/revokeAdminByEmail?email=thisismytestemail@test.com",
+											"host": [
+												"{{ADMIN_ROOT}}"
+											],
+											"path": [
+												"revokeAdminByEmail"
+											],
+											"query": [
+												{
+													"key": "email",
+													"value": "thisismytestemail@test.com"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Grant Admin Role",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{ADMIN_ROOT}}/grantAdminRole/M12pqxooMKfXAmaU7UO32M46UOX2",
+									"host": [
+										"{{ADMIN_ROOT}}"
+									],
+									"path": [
+										"grantAdminRole",
+										"M12pqxooMKfXAmaU7UO32M46UOX2"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Verify Admin Role",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjMzMDUxMThiZTBmNTZkYzA4NGE0NmExN2RiNzU1NjVkNzY4YmE2ZmUiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiV29vcCBEZSBkb29wIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FDZzhvY0xFMEtMTko5QzNzRkVMQkQ1N0FfRHVYNGZ5WmFTZjZZNW9xd1ZCUHRIOFdrdnJHQT1zOTYtYyIsImN1c3RvbV9jbGFpbXMiOlsiQURNSU4iXSwiaXNzIjoiaHR0cHM6Ly9zZWN1cmV0b2tlbi5nb29nbGUuY29tL2V4aWx1bS0yYjdkNCIsImF1ZCI6ImV4aWx1bS0yYjdkNCIsImF1dGhfdGltZSI6MTcxNzU4NDQzOCwidXNlcl9pZCI6Ik0xMnBxeG9vTUtmWEFtYVU3VU8zMk00NlVPWDIiLCJzdWIiOiJNMTJwcXhvb01LZlhBbWFVN1VPMzJNNDZVT1gyIiwiaWF0IjoxNzE3NTg0NDM4LCJleHAiOjE3MTc1ODgwMzgsImVtYWlsIjoiYW1sMjcxMTEzQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7Imdvb2dsZS5jb20iOlsiMTE1NDMwNDI2ODY1NDkzODI1NjQxIl0sImVtYWlsIjpbImFtbDI3MTExM0BnbWFpbC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.miyyMkmdriwdoovTHBpKVYBe2_QQdVLxmfjANEEI2z0YTRHxVlX00zbKIg2JP-rVGtKOvR82_7ZUSJJuCMumqjz8ZKlQx3lJbQFktVdZSHSUv3Toz2IvuI9HayrJFj7z5fyX3fEDZJBMgexpCOlhwBkevFND0uuKxNuYOfeQ2Gp_IeB7vC7SuVgMg5MQ5wXNz1MRrwzD5fK_mHPJi_F2DGGvYphg3NKKRQAsFbeG7UE-hE4EMYlXm0pO-LIUYS7Qu9lF5pX2sPWW0NDpNdIvnERr0jVsXvPRDyqDQSXZ1Bjo6WcbcyCgSHHpwpK2rGEUY86njE840BIw5Sy65kxEvA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{ADMIN_ROOT}}/checkAdmin",
+							"host": [
+								"{{ADMIN_ROOT}}"
+							],
+							"path": [
+								"checkAdmin"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Web",
+			"item": [
+				{
+					"name": "Get Data",
+					"item": [
+						{
+							"name": "Get Scarabs",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{WEB_ROOT}}/getScarabs",
+									"host": [
+										"{{WEB_ROOT}}"
+									],
+									"path": [
+										"getScarabs"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Maps",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{WEB_ROOT}}/getMaps",
+									"host": [
+										"{{WEB_ROOT}}"
+									],
+									"path": [
+										"getMaps"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Delirium Orbs",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{WEB_ROOT}}/getDeliriumOrbs",
+									"host": [
+										"{{WEB_ROOT}}"
+									],
+									"path": [
+										"getDeliriumOrbs"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Crafting Materials",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{WEB_ROOT}}/getCraftingMaterials",
+									"host": [
+										"{{WEB_ROOT}}"
+									],
+									"path": [
+										"getCraftingMaterials"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Device Crafts",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{WEB_ROOT}}/getDeviceCrafts",
+									"host": [
+										"{{WEB_ROOT}}"
+									],
+									"path": [
+										"getDeviceCrafts"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Maps (By Tier)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{WEB_ROOT}}/getMapsByTier?inputTier=WHITE",
+									"host": [
+										"{{WEB_ROOT}}"
+									],
+									"path": [
+										"getMapsByTier"
+									],
+									"query": [
+										{
+											"key": "inputTier",
+											"value": "WHITE"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Strategy",
+					"item": [
+						{
+							"name": "Check strategy price",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"scarabs\": [\r\n    {\r\n      \"name\": \"Abyss Scarab\",\r\n      \"quantity\": 2,\r\n      \"icon_url\": \"https://example.com/random-image-1.jpg\"\r\n    },\r\n    {\r\n      \"name\": \"Ambush Scarab of Containment\",\r\n      \"quantity\": 1,\r\n      \"icon_url\": \"https://example.com/random-image-2.png\"\r\n    },\r\n    {\r\n      \"name\": \"Beyond Scarab of the Invasion\",\r\n      \"quantity\": 1,\r\n      \"icon_url\": \"https://example.com/random-image-3.gif\"\r\n    }\r\n  ],\r\n  \"deliriumOrbs\": [\r\n    {\r\n      \"name\": \"Singular Delirium Orb\",\r\n      \"quantity\": 3,\r\n      \"icon_url\": \"https://example.com/random-image-4.jpeg\"\r\n    },\r\n    {\r\n      \"name\": \"Diviner's Delirium Orb\",\r\n      \"quantity\": 2,\r\n      \"icon_url\": \"https://example.com/random-image-5.webp\"\r\n    }\r\n  ],\r\n  \"mapDeviceCraft\": [\r\n    {\r\n      \"name\": \"Domination\",\r\n      \"quantity\": 1,\r\n      \"icon_url\": \"https://example.com/random-image-6.svg\"\r\n    }\r\n  ],\r\n  \"maps\": [\r\n    {\r\n      \"name\": \"Strand Map\",\r\n      \"quantity\": 1,\r\n      \"icon_url\": \"https://example.com/random-image-7.bmp\"\r\n    }\r\n  ],\r\n  \"craftingMaterials\": [\r\n    {\r\n      \"name\": \"Cartographer's Chisel\",\r\n      \"quantity\": \"20\",\r\n      \"icon_url\": \"https://example.com/random-image-8.png\"\r\n    },\r\n    {\r\n      \"name\": \"Orb of Alchemy\",\r\n      \"quantity\": \"5\",\r\n      \"icon_url\": \"https://example.com/random-image-9.jpg\"\r\n    }\r\n  ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{STRATEGY_ROOT}}/price",
+									"host": [
+										"{{STRATEGY_ROOT}}"
+									],
+									"path": [
+										"price"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Identity Toolkit Email Login",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"thisismytestemail@test.com\",\r\n    \"password\": \"test123\",\r\n    \"returnSecureToken\": \"true\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDV2QQ0oVhKlSghEhT5vm-k1UdajgBsSPU",
+					"protocol": "https",
+					"host": [
+						"identitytoolkit",
+						"googleapis",
+						"com"
+					],
+					"path": [
+						"v1",
+						"accounts:signInWithPassword"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "AIzaSyDV2QQ0oVhKlSghEhT5vm-k1UdajgBsSPU"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Change Permssion user claims",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\"READ\", \"WRITE\"]\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/admin/user-claims/7le0y0tvPDQg6uneeq3njDRXjUm2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"admin",
+						"user-claims",
+						"7le0y0tvPDQg6uneeq3njDRXjUm2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Change Role user claims",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\"ADMIN\"",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/admin/roles/bAbbYluZJeNmHMrTToGXLvdKcTj2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"admin",
+						"roles",
+						"bAbbYluZJeNmHMrTToGXLvdKcTj2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sign Up",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"thisismyemail@test.es\",\r\n    \"password\": \"test123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{AUTH_ROOT}}/signup",
+					"host": [
+						"{{AUTH_ROOT}}"
+					],
+					"path": [
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Session Login",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6Ijc2MDI3MTI2ODJkZjk5Y2ZiODkxYWEwMzdkNzNiY2M2YTM5NzAwODQiLCJ0eXAiOiJKV1QifQ.eyJjdXN0b21fY2xhaW1zIjpbIkFETUlOIl0sImlzcyI6Imh0dHBzOi8vc2VjdXJldG9rZW4uZ29vZ2xlLmNvbS9leGlsdW0tMmI3ZDQiLCJhdWQiOiJleGlsdW0tMmI3ZDQiLCJhdXRoX3RpbWUiOjE3MTQ5MzEzMDksInVzZXJfaWQiOiJiQWJiWWx1WkplTm1ITXJUVG9HWEx2ZEtjVGoyIiwic3ViIjoiYkFiYllsdVpKZU5tSE1yVFRvR1hMdmRLY1RqMiIsImlhdCI6MTcxNDkzMTMwOSwiZXhwIjoxNzE0OTM0OTA5LCJlbWFpbCI6InRoaXNpc215dGVzdGVtYWlsQHRlc3QuY29tIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7ImVtYWlsIjpbInRoaXNpc215dGVzdGVtYWlsQHRlc3QuY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoicGFzc3dvcmQifX0.P7_TAgAFpbGd_RP9y9NKdUooMox7u7xRTG2yhZ7xEdOjT-Qkls1Wl-rcAYomdEK6SSdUhxCbdzZKhfx-9JSeAMJ2suVUcmkEsp3n9_SMr9GgIso2nM8n6p96fM4cDnZ4hLrUekUHxVRtPiFXydjn8gGpOzgXF0gMjteCQuj4h3tM1tngVD9DXu9cSh4CqSz8TmgFo2bszjAdMJqN8CNhEfBWax8n3LNiSHsEhvLJovN-3Or5PB96TVsupfLkPkrEmlF3tBqxjaGoXH4mIcLr3AmmrNH5K3Zht9Lrse_APRteGwhj9F6g5QkOrw7Fy-bEz5kybCzHMKvBSlqmCZFZAg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"idToken\": \"eyJhbGciOiJSUzI1NiIsImtpZCI6Ijc2MDI3MTI2ODJkZjk5Y2ZiODkxYWEwMzdkNzNiY2M2YTM5NzAwODQiLCJ0eXAiOiJKV1QifQ.eyJjdXN0b21fY2xhaW1zIjpbIkFETUlOIl0sImlzcyI6Imh0dHBzOi8vc2VjdXJldG9rZW4uZ29vZ2xlLmNvbS9leGlsdW0tMmI3ZDQiLCJhdWQiOiJleGlsdW0tMmI3ZDQiLCJhdXRoX3RpbWUiOjE3MTQ5MzEzMDksInVzZXJfaWQiOiJiQWJiWWx1WkplTm1ITXJUVG9HWEx2ZEtjVGoyIiwic3ViIjoiYkFiYllsdVpKZU5tSE1yVFRvR1hMdmRLY1RqMiIsImlhdCI6MTcxNDkzMTMwOSwiZXhwIjoxNzE0OTM0OTA5LCJlbWFpbCI6InRoaXNpc215dGVzdGVtYWlsQHRlc3QuY29tIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7ImVtYWlsIjpbInRoaXNpc215dGVzdGVtYWlsQHRlc3QuY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoicGFzc3dvcmQifX0.P7_TAgAFpbGd_RP9y9NKdUooMox7u7xRTG2yhZ7xEdOjT-Qkls1Wl-rcAYomdEK6SSdUhxCbdzZKhfx-9JSeAMJ2suVUcmkEsp3n9_SMr9GgIso2nM8n6p96fM4cDnZ4hLrUekUHxVRtPiFXydjn8gGpOzgXF0gMjteCQuj4h3tM1tngVD9DXu9cSh4CqSz8TmgFo2bszjAdMJqN8CNhEfBWax8n3LNiSHsEhvLJovN-3Or5PB96TVsupfLkPkrEmlF3tBqxjaGoXH4mIcLr3AmmrNH5K3Zht9Lrse_APRteGwhj9F6g5QkOrw7Fy-bEz5kybCzHMKvBSlqmCZFZAg\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{AUTH_ROOT}}/sessionLogin",
+					"host": [
+						"{{AUTH_ROOT}}"
+					],
+					"path": [
+						"sessionLogin"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "ADMIN_ROOT",
+			"value": "http://localhost:8080/admin",
+			"type": "string"
+		},
+		{
+			"key": "WEB_ROOT",
+			"value": "http://localhost:8080/api",
+			"type": "string"
+		},
+		{
+			"key": "AUTH_ROOT",
+			"value": "http://localhost:8080/api/auth",
+			"type": "string"
+		},
+		{
+			"key": "HEROKU_ROOT",
+			"value": "http://exilum-back-f5a317534f1c.herokuapp.com/",
+			"type": "string"
+		},
+		{
+			"key": "TEST_ROOT",
+			"value": "http://localhost:8080/api/test",
+			"type": "string"
+		},
+		{
+			"key": "STRATEGY_ROOT",
+			"value": "http://localhost:8080/api/strategy",
+			"type": "string"
+		}
+	]
+}

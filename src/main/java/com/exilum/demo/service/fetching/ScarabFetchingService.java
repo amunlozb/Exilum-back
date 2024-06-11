@@ -22,9 +22,8 @@ public class ScarabFetchingService {
     private ScarabRepository scarabRepository;
 
     public ScarabDTO[] fetchScarabs() {
-        ScarabDTO[] result = restTemplate.getForObject(uri, ScarabDTO[].class);
 
-        return result;
+        return restTemplate.getForObject(uri, ScarabDTO[].class);
     }
 
     public String fetchAndSaveScarabs() {
@@ -70,6 +69,18 @@ public class ScarabFetchingService {
                 .sorted(Comparator.comparing(Scarab::getMechanic))
 
                 .collect(Collectors.toList());
+    }
+
+    public Double findPriceByName(String name) {
+        Scarab found = scarabRepository.findByName(name);
+        if (found != null) {
+            return found.getPrice();
+        }
+        return 0d;
+    }
+
+    public Scarab findByName(String name) {
+        return(scarabRepository.findByName(name));
     }
 
 }

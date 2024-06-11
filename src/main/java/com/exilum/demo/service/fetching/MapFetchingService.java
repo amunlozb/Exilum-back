@@ -1,8 +1,6 @@
 package com.exilum.demo.service.fetching;
 
-import com.exilum.demo.model.DTO.DeliriumOrbDTO;
 import com.exilum.demo.model.DTO.MapDTO;
-import com.exilum.demo.model.DeliriumOrb;
 import com.exilum.demo.model.Map;
 import com.exilum.demo.model.Tier;
 import com.exilum.demo.repository.MapRepository;
@@ -111,6 +109,7 @@ public class MapFetchingService {
         }
     }
 
+    // adding just in case its needed in the future, currently not used
     public List<Map> getAllMaps() {
         List<Map> maps = mapRepository.findAll();
         return maps.stream()
@@ -123,5 +122,17 @@ public class MapFetchingService {
         return allMaps.stream()
                 .filter(map -> map.getName().contains("Blighted"))
                 .collect(Collectors.toList());
+    }
+
+    public Double findPriceByName(String name) {
+        Map found = mapRepository.findByName(name).get(0);
+        if (found != null) {
+            return found.getPrice();
+        }
+        return 0d;
+    }
+
+    public Map findByName(String name) {
+        return(mapRepository.findByName(name).get(0));
     }
 }

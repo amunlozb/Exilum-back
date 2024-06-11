@@ -4,16 +4,14 @@
     import org.springframework.context.annotation.Configuration;
     import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
     import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+    import org.springframework.security.config.annotation.web.configurers.CsrfConfigurer;
     import org.springframework.security.core.GrantedAuthority;
     import org.springframework.security.core.authority.SimpleGrantedAuthority;
     import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
     import org.springframework.security.web.SecurityFilterChain;
-    import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
     import java.util.ArrayList;
     import java.util.List;
-    import java.util.Optional;
-    import java.util.stream.Collectors;
 
     @Configuration
     @EnableMethodSecurity(securedEnabled = true)
@@ -22,8 +20,8 @@
         @Bean
         public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
             http
-                    .csrf().disable()
-                    .authorizeRequests(authorize -> authorize
+                    .csrf(CsrfConfigurer::disable)
+                    .authorizeHttpRequests(authorize -> authorize
                             // Test Endpoints
                             .requestMatchers("/api/test/public").permitAll()
                             .requestMatchers("/api/test/authenticated").authenticated()
@@ -32,6 +30,7 @@
                             .requestMatchers("/api/auth/**").permitAll()
                             // Web Endpoints
                             .requestMatchers("/api/**").permitAll()
+                            .requestMatchers("/api/strategy/**").permitAll()
                             .anyRequest().authenticated()
                     )
                     .oauth2ResourceServer(oauth2 -> oauth2.jwt(jwtConfigurer -> jwtConfigurer

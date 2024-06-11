@@ -65,4 +65,15 @@ public class DeliriumOrbFetchingService {
         return deliriumOrbRepository.findAll();
     }
 
+    public Double findPriceByName(String name) {
+        DeliriumOrb found = deliriumOrbRepository.findByName(name);
+        if (found != null) {
+            return found.getPrice();
+        }
+        return 0d;
+    }
+
+    public DeliriumOrb findByName(String name) {
+        return(deliriumOrbRepository.findByName(name));
+    }
 }
