@@ -2,6 +2,7 @@ package com.exilum.demo.controllers;
 
 import com.exilum.demo.model.DTO.strategy.request.StrategyDTO;
 import com.exilum.demo.model.DTO.strategy.response.StrategySummaryDTO;
+import com.exilum.demo.model.DTO.strategy.sharing.StrategySharingDTO;
 import com.exilum.demo.model.sharing.SharedStrategy;
 import com.exilum.demo.repository.sharing.SharedStrategyRepository;
 import com.exilum.demo.service.StrategyService;
@@ -45,12 +46,19 @@ public class SharingController {
         SharedStrategy sharedStrategy = sharedStrategyRepository.findById(uuid)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Shared link not found"));
 
-        StrategyDTO strategyDTO;
+        StrategyDTO strategyDTO = new StrategyDTO();
         try {
             strategyDTO = objectMapper.readValue(sharedStrategy.getRequestBody(), StrategyDTO.class); // Convert requestBody (JSON string) back to StrategyDTO
         } catch (JsonProcessingException e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Failed to process request body", e);
         }
+        // convert from StrategySharingDTO to StrategyDTO
+         /* StrategyDTO strategyDTO = new StrategyDTO();
+        strategyDTO.setScarabs(strategySharingDTO.getScarabs());
+        strategyDTO.setDeliriumOrbs(strategySharingDTO.getDeliriumOrbs());
+        strategyDTO.setMapDeviceCrafts(strategySharingDTO.getMapDeviceCrafts());
+        strategyDTO.setMaps(strategySharingDTO.getMaps());
+        strategyDTO.setCraftingMaterials(strategySharingDTO.getCraftingMaterials()); */
 
         // Use the StrategyService to calculate prices based on the retrieved StrategyDTO
         return strategyService.processStrategy(strategyDTO);
