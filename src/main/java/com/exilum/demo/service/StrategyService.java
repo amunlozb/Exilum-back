@@ -44,7 +44,7 @@ public class StrategyService {
         // Process Scarabs
         for (ItemDTO item : strategyDTO.getScarabs()) {
             double price = scarabFetchingService.findPriceByName(item.getName());
-            String iconUrl = item.getIcon_url(); // Get the icon URL
+            String iconUrl = item.getIcon_url();
             scarabs.add(new ItemSummaryDTO(item.getName(), item.getQuantity(), price, iconUrl));
             Scarab scarab = scarabFetchingService.findByName(item.getName());
             strategy.addScarab(scarab, item.getQuantity());
@@ -53,7 +53,7 @@ public class StrategyService {
         // Process Delirium Orbs
         for (ItemDTO item : strategyDTO.getDeliriumOrbs()) {
             double price = deliriumOrbFetchingService.findPriceByName(item.getName());
-            String iconUrl = item.getIcon_url(); // Get the icon URL
+            String iconUrl = item.getIcon_url();
             deliriumOrbs.add(new ItemSummaryDTO(item.getName(), item.getQuantity(), price, iconUrl));
             DeliriumOrb deliriumOrb = deliriumOrbFetchingService.findByName(item.getName());
             strategy.addDeliriumOrb(deliriumOrb, item.getQuantity());
@@ -62,7 +62,7 @@ public class StrategyService {
         // Process Map Device Crafts
         for (ItemDTO item : strategyDTO.getMapDeviceCraft()) {
             double price = deviceCraftFetchingService.findPriceByName(item.getName());
-            // No icon URL for Device Crafts
+            // Static icon url for device crafts
             mapDeviceCrafts.add(new ItemSummaryDTO(item.getName(), item.getQuantity(), price, "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQmVzdGlhcnlPcmJGdWxsIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/3214b44360/BestiaryOrbFull.png"));
             DeviceCraft deviceCraft = deviceCraftFetchingService.findByName(item.getName());
             strategy.addDeviceCraft(deviceCraft, item.getQuantity());
@@ -71,7 +71,7 @@ public class StrategyService {
         // Process Maps
         for (ItemDTO item : strategyDTO.getMaps()) {
             double price = mapFetchingService.findPriceByName(item.getName());
-            String iconUrl = item.getIcon_url(); // Get the icon URL
+            String iconUrl = item.getIcon_url();
             maps.add(new ItemSummaryDTO(item.getName(), item.getQuantity(), price, iconUrl));
             Map map = mapFetchingService.findByName(item.getName());
             strategy.addMap(map, item.getQuantity());
