@@ -30,7 +30,8 @@ public class SharingController {
         sharedStrategy.setId(UUID.randomUUID());
         // check if toString is alright
         try {
-            sharedStrategy.setRequestBody(objectMapper.writeValueAsString(strategyDTO)); // convert request body to string
+            sharedStrategy.setRequestBody(objectMapper.writeValueAsString(strategyDTO));
+            System.out.println(sharedStrategy.getRequestBody());// convert request body to string
         } catch (JsonProcessingException e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Failed to process request body", e);
         }

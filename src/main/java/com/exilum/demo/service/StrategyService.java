@@ -60,7 +60,7 @@ public class StrategyService {
         }
 
         // Process Map Device Crafts
-        for (ItemDTO item : strategyDTO.getMapDeviceCraft()) {
+        for (ItemDTO item : strategyDTO.getMapDeviceCrafts()) {
             double price = deviceCraftFetchingService.findPriceByName(item.getName());
             // Static icon url for device crafts
             mapDeviceCrafts.add(new ItemSummaryDTO(item.getName(), item.getQuantity(), price, "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQmVzdGlhcnlPcmJGdWxsIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/3214b44360/BestiaryOrbFull.png"));
