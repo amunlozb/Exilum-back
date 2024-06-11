@@ -19,11 +19,10 @@ RUN mvn package -DskipTests
 # https://docs.docker.com/develop/develop-images/multistage-build/#use-multi-stage-builds
 FROM openjdk:17-jdk-slim
 
+EXPOSE 8080
+
 # Copy the jar to the production image from the builder stage.
 COPY --from=build-env /app/target/demo-*.jar /demo.jar
-
-# Expose the port the application runs on
-EXPOSE 8080
 
 # Run the web service on container startup.
 CMD ["java", "-jar", "/demo.jar"]
