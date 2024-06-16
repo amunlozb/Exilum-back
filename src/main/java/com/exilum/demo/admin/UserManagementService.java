@@ -51,6 +51,10 @@ public class UserManagementService {
         return setRoleUserClaims(uid, roles);
     }
 
+    public String revokeAdminRole(String uid) throws FirebaseAuthException {
+        return setRoleUserClaims(uid, Collections.emptyList());
+    }
+
     public String grantAdminRoleByEmail(String email) throws FirebaseAuthException {
         // Get the user's UID based on their email
         String uid = FirebaseAuth.getInstance().getUserByEmail(email).getUid();

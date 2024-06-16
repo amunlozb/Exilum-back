@@ -25,6 +25,7 @@ public class DeliriumOrbFetchingService {
 
     public String fetchAndSaveDeliriumOrbs() {
         DeliriumOrbDTO[] deliriumOrbDTOs = fetchDeliriumOrbs();
+        deliriumOrbRepository.deleteAll();
 
         if (deliriumOrbDTOs != null) {
 

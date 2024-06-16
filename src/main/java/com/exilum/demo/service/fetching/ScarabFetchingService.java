@@ -28,6 +28,7 @@ public class ScarabFetchingService {
 
     public String fetchAndSaveScarabs() {
         ScarabDTO[] scarabDTOs = fetchScarabs();
+        scarabRepository.deleteAll();
 
         if (scarabDTOs != null) {
             for (ScarabDTO scarabDTO : scarabDTOs) {
