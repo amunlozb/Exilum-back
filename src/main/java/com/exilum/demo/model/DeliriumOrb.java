@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Table(name = "DeliriumOrbs")
 @Data
@@ -27,4 +29,5 @@ public class DeliriumOrb {
 
     @Column(name = "icon_url")
     private String icon_url;
+
 }

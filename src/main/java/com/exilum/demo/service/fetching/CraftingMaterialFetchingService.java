@@ -34,6 +34,7 @@ public class CraftingMaterialFetchingService {
 
     public String fetchAndSaveCraftingMaterials() {
         CraftingMaterialDTO[] craftingMaterialDTOs = fetchCraftingMaterials();
+        craftingMaterialRepository.deleteAll();
 
         if (craftingMaterialDTOs != null) {
             for (CraftingMaterialDTO craftingMaterialDTO : craftingMaterialDTOs) {
@@ -63,9 +64,9 @@ public class CraftingMaterialFetchingService {
                     craftingMaterialRepository.save(craftingMaterial);
                 }
             }
-            return "Delirium Orb prices updated successfully";
+            return "Crafting Material prices updated successfully";
         } else {
-            return "An error occurred while fetching Delirium Orbs. Check poe.watch status.";
+            return "An error occurred while fetching Crafting Materials. Check poe.watch status.";
         }
     }
 
