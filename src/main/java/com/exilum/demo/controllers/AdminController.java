@@ -5,6 +5,7 @@ import com.exilum.demo.model.DTO.CraftingMaterialDTO;
 import com.exilum.demo.model.DTO.DeliriumOrbDTO;
 import com.exilum.demo.model.DTO.MapDTO;
 import com.exilum.demo.model.DTO.ScarabDTO;
+import com.exilum.demo.model.DataPoint;
 import com.exilum.demo.model.Scarab;
 import com.exilum.demo.repository.CraftingMaterialRepository;
 import com.exilum.demo.security.Permission;
@@ -26,6 +27,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
@@ -58,6 +60,16 @@ public class AdminController {
     public ResponseEntity<?> grantAdminRole(@PathVariable String uid) {
         try {
             String customToken = userManagementService.grantAdminRole(uid);
+            return ResponseEntity.ok(customToken);
+        } catch (FirebaseAuthException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
+    }
+
+    @PostMapping("/revokeAdminRole/{uid}")
+    public ResponseEntity<?> revokeAdminRole(@PathVariable String uid) {
+        try {
+            String customToken = userManagementService.revokeAdminRole(uid);
             return ResponseEntity.ok(customToken);
         } catch (FirebaseAuthException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
@@ -163,5 +175,27 @@ public class AdminController {
         String msg = craftingMaterialFetchingService.updatePricesCraftingMaterials();
         return ResponseEntity.ok(msg);
     }
+
+    @GetMapping("/chartOneData")
+    public ResponseEntity<List<DataPoint>> getChartOneData() {
+        List<DataPoint> dataPoints = new ArrayList<>();
+        dataPoints.add(new DataPoint("Mon", 6500));
+        dataPoints.add(new DataPoint("Tue", 6418));
+        dataPoints.add(new DataPoint("Wed", 6456));
+        dataPoints.add(new DataPoint("Thu", 6526));
+        dataPoints.add(new DataPoint("Fri", 6470));
+        dataPoints.add(new DataPoint("Sat", 6700));
+        dataPoints.add(new DataPoint("Sun", 6380));
+
+        return ResponseEntity.ok(dataPoints);
+    }
+
+    @GetMapping("/chartTwoData")
+    public ResponseEntity<List<Integer>> getChartTwoData() {
+        List<Integer> values = Arrays.asList(6100, 6500, 6900, 5800);
+        return ResponseEntity.ok(values);
+    }
+
+
 
 }

@@ -28,6 +28,7 @@ public class MapFetchingService {
 
     public String fetchAndSaveMaps() {
         MapDTO[] mapDTOs = fetchMaps();
+        mapRepository.deleteAll();
 
         if (mapDTOs != null) {
             for (MapDTO mapDTO : mapDTOs) {

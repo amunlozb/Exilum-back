@@ -5,10 +5,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 import java.util.Collections;
 
 @SpringBootApplication
+@EnableScheduling
 public class ExilumApplication {
 
 	private static final Logger logger = LoggerFactory.getLogger(ExilumApplication.class);

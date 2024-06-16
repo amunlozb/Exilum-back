@@ -14,6 +14,7 @@ public class CorsConfig implements WebMvcConfigurer {
         registry
                 .addMapping("/**")
                 .allowedOrigins("http://localhost:5173", "https://exilum-2b7d4.web.app", "https://exilum-2b7d4.firebaseapp.com")
+                .allowedMethods("GET", "POST", "PUT", "DELETE")
                 .allowedHeaders("*")
                 .allowCredentials(true);
     }

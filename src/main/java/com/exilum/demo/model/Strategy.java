@@ -30,7 +30,7 @@ public class Strategy {
     )
     private List<Scarab> scarabs = new ArrayList<>();
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "Strategies_have_DeliriumOrbs",
             joinColumns = @JoinColumn(name = "strategy_id"),
